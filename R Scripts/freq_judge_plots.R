@@ -101,6 +101,19 @@ ggsave('Plots/plt_fj_means.svg',
        units = 'in', width = 16, height = 9)  
 
 
+#Acommpanying table
+fj_bar_tab <- fj_long %>%
+  group_by(FJ_context, FJ_outcome, condition) %>%
+  summarise(n = length(FJ_resp ),
+            mean = mean(FJ_resp),
+            sd = sd(FJ_resp),
+            median = median(FJ_resp),
+            IQR = IQR(FJ_resp)
+  )
+
+lookup <- c(context = "FJ_context", outcome = "FJ_outcome")
+fj_bar_tab <- rename(fj_bar_tab, all_of(lookup))
+
 # EO Violin Plot
 #-------------------------------------------------------------------------------
 dodge <- position_dodge(.6)
