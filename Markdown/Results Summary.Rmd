@@ -708,7 +708,7 @@ Extreme First vs. (Extreme Last & No Extreme)
 
 $t(`r df_2[1]`) = `r t[1]`$, $p = `r p_2[1]`$, $r = `r r[1]`$
 
-- The *Extreme Last* condition is significantly different from the combination of the other two conditions. Note that the effect is small and may be of little practical value.
+- The *Extreme First* condition is significantly different from the combination of the other two conditions. Note that the effect is small and may be of little practical value.
 
 <br>
 
@@ -716,7 +716,7 @@ Extreme Last vs. No Extreme
 
 $t(`r df_2[2]`) = `r t[2]`$, $p = `r p_2[2]`$, $r = `r r[2]`$
 
-- The *Extreme First* and *No Extreme* conditions do not significantly differ. 
+- The *Extreme Last* and *No Extreme* conditions do not significantly differ. 
 
 <br>
 
@@ -1160,7 +1160,7 @@ Extreme First vs. (Extreme Last & No Extreme)
 
 $t(`r df_2[1]`) = `r t[1]`$, $p = `r p_2[1]`$, $r = `r r[1]`$
 
-- The *Extreme Last* condition is significantly different from the combination of the other two conditions. Note that the effect is small and may be of little practical value.
+- The *Extreme First* condition is significantly different from the combination of the other two conditions. Note that the effect is small and may be of little practical value.
 
 <br>
 
@@ -1168,7 +1168,7 @@ Extreme Last vs. No Extreme
 
 $t(`r df_2[2]`) = `r t[2]`$, $p = `r p_2[2]`$, $r = `r r[2]`$
 
-- The *Extreme First* and *No Extreme* conditions do not significantly differ. 
+- The *Extreme Last* and *No Extreme* conditions do not significantly differ. 
 
 <br>
 
