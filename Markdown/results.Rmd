@@ -22,20 +22,30 @@ details > summary {
 
 ```{r setup, include = FALSE}
 options(pillar.print_max = Inf)
-if(!require(knitr)){install.packages('knitr')}
-if(!require(kableExtra)){install.packages('kableExtra')}
+
+if (!require(knitr)) {
+  install.packages("knitr")
+}
+if (!require(kableExtra)) {
+  install.packages("kableExtra")
+}
+if (!require(tidyverse)) {
+  install.packages("tidyverse")
+}
+
 library(knitr)
 library(kableExtra)
+library(tidyverse)
 
-#Directory
-#opts_knit$set(root.dir = dirname(getwd())) #Rendering from this .Rmd file.
-opts_knit$set(root.dir = main_dir) #Rendering from Gen_Rmd_Doc
+# Directory
+# opts_knit$set(root.dir = dirname(getwd())) #Rendering from this .Rmd file.
+opts_knit$set(root.dir = main_dir) # Rendering from Gen_Rmd_Doc
 ```
 
 ```{r include = FALSE}
-if (!file.exists('Data/wc_full_data.csv')) {
-  source('R Scripts/data_merge_filter.R')
-  }
+if (!file.exists("Data/wc_full_data.csv")) {
+  source("R Scripts/data_merge_filter.R")
+}
 ```
 
 
