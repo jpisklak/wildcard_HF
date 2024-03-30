@@ -20,5 +20,5 @@ invisible(lapply(pkgs, library, character.only = TRUE))
 options(pillar.print_min = 75, pillar.width = Inf)
 
 # Load custom ggplot theme
-source("R Scripts/theme_custom.R")
+source("r-scripts/theme_custom.R")
 

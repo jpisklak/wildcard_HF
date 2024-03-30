@@ -1,0 +1,297 @@
+# **First-Outcome Judgement**
+
+<details>
+  <summary>
+  Details and complications of first-outcome judgement results
+  </summary>
+
+**Pre-registration document McNemar Tests:**
+
+The pre-registration document states . . . 
+
+- *The first-outcome memory tests will be analyzed with a sequence of three McNemar Tests.* **<u>Each test will compare two of the groups and</u> the proportion reporting the extreme option for the high- and low-value option.** *The target prediction of the Encoding Hypothesis is that the proportion of extreme outcomes reported first will be reliably lower in the Extreme First group. Ideally, we would run one test with all three groups (like an overall ANOVA), but as of the time of writing this pre-registration, we have not been able to identify the appropriate variation of a chi-squared test that would work for this scenario.*
+  
+Based on this, it seems that the plan was to use McNemar Tests for condition comparisons, doing so three times to compare each pair of conditions (E1 vs EL, E1 vs NE, EL vs NE), while also factoring in counts/proportions for the 20th and 80th extremes. It is not clear that there is a way to do that with this test.  You can do one McNemar Test for each condition (which is what has been done below), but you cannot compare across conditions, like is stated in the pre-registration document.
+
+**Alternative to McNemar tests:**
+
+An alternative method to obtain a comparison across conditions could be to run two standard Pearson's Chi-squared tests using a 3 x 2 contingency table for the the High and Low choices respectively, like so...
+
+```{r}
+df_h <- data.frame(
+  `High Extreme` = c('a','c', 'e'),
+  Other = c('b','d','f')
+  )
+
+df_l <- data.frame(
+  `Low Extreme` = c('a','c', 'e'),
+  Other = c('b','d','f')
+  )
+
+rownames(df_h) <- c('Extreme First', 'Extreme Last', 'No Extreme')
+rownames(df_l) <- c('Extreme First', 'Extreme Last', 'No Extreme')
+
+kable(df_h, 'html') %>%
+  kable_classic(full_width = F, position = "left", html_font = "Arial")
+```
+
+<br>
+
+```{r}
+kable(df_l, 'html') %>%
+  kable_classic(full_width = F, position = "left", html_font = "Arial")
+```
+
+This would tell you whether reporting the extreme option varied according to condition, and then you could look at the standardized residuals to see where a difference is happening. Or you could do pairwise tests with appropriate p-value adjustments. 
+
+<br>
+
+</details>
+
+<!-- Plot First-Outcome Judgement -->
+
+<details>
+  <summary>
+  Plot - Barplot of proportions
+  </summary>
+  
+```{r, fig.width = 15, fig.height = 7}
+source('r-scripts/fo_recall_analysis.R')
+plt_fo_prop
+```
+
+<br>
+
+Note: 
+
+- Proportions are taken within condition and context (high/low). E.g., All the green bars on the left side sum to 1, all the green bars on the right side sum to one, and so on. 
+- The colour palette (which I don't anticipate you will like) is colourblind friendly.
+
+<br>
+
+</details>
+
+<!--McNemar Test W/ Odds Ratio and Cohen's g effect size-->
+
+<details>
+  <summary>
+  McNemar Test with odds ratio and Cohen's *g* effect sizes
+  </summary>
+  
+  
+<h3>McNemar Tests</h3>
+```{r echo = FALSE, message = FALSE, warning = FALSE}
+kable(fo_stats, 'html') %>%
+  kable_classic(full_width = T, html_font = "Arial")
+```
+
+<br>
+
+<h4>Effect Size Interpretation</h4>
+
+```{r echo = FALSE, message = FALSE, warning = FALSE}
+kable(interp, 'html') %>%
+  kable_classic(full_width = F, position = "left", html_font = "Arial")
+```
+
+<br>
+
+Note:
+
+- Report either the odds ratio or Cohen's $g$, not both.
+- Almost nobody has heard of Cohen's $g$ and wouldn't know how to interpret it. Furthermore, they would probably confuse it with Hedge's $g$ (which is a variant of Cohen's $d$).  Therefore, it's probably best to report the odds ratio.
+
+<br>
+
+<h3>Conclusions</h3> 
+
+```{r}
+chi <- round(fo_stats$Statistic, 2)
+df <- round(fo_stats$df)
+p <- round(fo_stats$p.value, 3)
+OR <- round(fo_stats$OR, 2)
+```
+
+**Extreme First Condition:**
+
+```{r}
+kable(g1_tab, 'html') %>%
+  kable_classic(full_width = F, position = "left", html_font = "Arial")
+```
+
+<br>
+
+$\chi^2(`r df[1]`) = `r chi[1]`, p = `r p[1]`$
+
+- There is no significant change in judgement evaluation between the high and low risky doors.
+
+- The odds of getting the judgement correct given they are seeing the high-risk door is `r OR[1]` times that of seeing the low-risk door and getting it wrong.
+
+<br>
+
+**Extreme Last Condition:**
+
+```{r}
+kable(g2_tab, "html") %>%
+  kable_classic(full_width = F, position = "left", html_font = "Arial")
+```
+
+<br>
+
+$\chi^2(`r df[2]`) = `r chi[2]`, p = `r p[2]`$
+
+- There is a significant change in judgement evaluation between the high and low risky doors.
+
+- The odds of getting the judgement correct given they are seeing the high-risk door is `r OR[2]` times that of seeing the low-risk door and getting it wrong.
+
+<br>
+
+**No Extreme Condition:**
+
+```{r}
+kable(g3_tab, 'html') %>%
+  kable_classic(full_width = F, position = "left", html_font = "Arial")
+```
+
+<br>
+
+$\chi^2(`r df[3]`) = `r chi[3]`, p = `r p[3]`$
+
+- There is a significant change in judgement evaluation between the high and low risky doors.
+
+- The odds of getting the judgement correct given they are seeing the high-risk door is `r OR[3]` times that of seeing the low-risk door and getting it wrong.
+
+<br>
+
+</details>
+
+<!--3x2 Pearson Chi-Squared-->
+
+<details>
+  <summary>
+  Alternative Analysis: 2x3 Chi-Squared Tests
+  </summary>
+
+```{r}
+chi <- round(c(fo_high_test$statistic, fo_low_test$statistic), 2)
+df <- round(c(fo_high_test$parameter, fo_low_test$parameter), 2)
+p <- round(c(fo_high_test$p.value, fo_low_test$p.value), 3)
+v <- round(c(fo_high_eff, fo_low_eff), 2)
+```
+
+<h3>High Value Results</h3> 
+
+```{r}
+kable(fo_high_tab, 'html', caption = 'High Value Contingency Table') %>%
+  kable_classic(full_width = F, position = "left", html_font = "Arial")
+```
+
+<br>
+
+$\chi^2(`r df[1]`) = `r chi[1]`, p = `r p[1]`, \varphi_c = `r v[1]`$
+
+- Cannot rule out that condition is independent of recalling the extreme value.
+
+
+```{r}
+kable(std_res_high, 'html', caption = 'Standardized Residuals', digits = 2) %>%
+  kable_classic(full_width = F, position = "float_left", html_font = "Arial")
+
+kable(p_high, 'html', caption = 'p-values', digits = 3) %>%
+  kable_classic(full_width = F, position = "float_left", html_font = "Arial")
+```
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+Only the *Extreme 1st* condition differs significantly from the expected value. The *Extreme 1st* condition tends to not recall the extreme value.
+
+- Extreme 1st: $z = `r round(std_res_high[4], 2)`, p = `r round(p_high[4], 3)`$
+
+<br>
+<br>
+
+<h3>Low Value Results</h3> 
+
+```{r}
+kable(fo_low_tab, 'html', caption = 'Low Value Contingency Table') %>%
+  kable_classic(full_width = F, position = "left", html_font = "Arial")
+```
+
+<br>
+
+$\chi^2(`r df[2]`) = `r chi[2]`, p = `r p[2]`, \varphi_c = `r v[2]`$
+
+- Condition is not independent of recalling the extreme value; however, the association/effect is a weak/small one.
+
+
+```{r}
+kable(std_res_low, 'html', caption = 'Standardized Residuals', digits = 2) %>%
+  kable_classic(full_width = F, position = "float_left", html_font = "Arial")
+
+kable(p_low, 'html', caption = 'p-values', digits = 3) %>%
+  kable_classic(full_width = F, position = "float_left", html_font = "Arial")
+```
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+The *Extreme 1st* and *No Extreme* conditions both differ significantly from the expected value. *Extreme 1st* tends to not recall the extreme value, whereas the *No Extreme* does.
+
+- Extreme 1st: $z = `r round(std_res_low[4], 2)`, p = `r round(p_low[4], 3)`$
+
+- No Extreme: $z = `r round(std_res_low[6], 2)`, p = `r round(p_low[6], 3)`$
+
+<br>
+<br>
+
+**Note:**
+
+- In the contingency tables, 'Yes' indicates the extreme value was recalled, 'No' indicates that it was not.
+
+- $\varphi_c$ is Cramér’s V, a measure of association for two nominal variables (i.e., an effect size of sorts). It can take a value between 0 and 1, with 0 indicating no association (i.e., full independence). 
+
+- Post-hoc analysis was conducted by evaluating the standardized residuals from the chi-square analysis because it seemed the most intuitive approach. However, another approach would be to conduct pairwise Pearson Chi-squared or Fisher Exact tests across the three conditions.
+
+
+<br>
+
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

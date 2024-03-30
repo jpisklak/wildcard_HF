@@ -1,5 +1,5 @@
 #setwd('..') #Running this R script alone requires being in the main dir.
-source('R Scripts/risky_trials_plots.R')
+source('r-scripts/risky_trials_plots.R')
 
 #Note: Pre-registration called for 3 separate one-way ANOVAs (not a 2x3 mixed)
 

@@ -1,6 +1,6 @@
 # Run this script to generate the markdown file.
 main_dir <- getwd()
-source_dir <- file.path(main_dir, "Markdown")
+source_dir <- file.path(main_dir, "markdown")
 output_dir <- main_dir
 
 # Knit Markdown
