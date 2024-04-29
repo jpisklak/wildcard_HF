@@ -1,42 +1,10 @@
 # setwd('..') #Running this R script alone requires being in the main dir
-source("r-scripts/prelim_code.R")
-
-data <- read_csv("data/wc_full_data.csv",
-  col_types = cols(
-    .default = "?",
-    money_tot = "c"
-  )
-)
-
-ctch <- filter(data, trial_type == 'ctch' & trial_tot == 300)
-names(ctch)
-
-ctch <- ctch %>% 
-  select(-PROLIFIC_PID, 
-         -STUDY_ID, 
-         -SESSION_ID,
-         -(money_tot:FJ2_resp))
-
-# Correct Choice
-ctch <- ctch %>%
-  mutate(corr_resp = case_when(
-    response == "HF" | response == "HR" ~ 1,
-    response == "LF" | response == "LR" ~ 0
-  ))
-
-# Subject Data
-subject_res <- ctch %>%
-  group_by(condition, ID, block) %>%
-  summarise(cp = mean(corr_resp))
-
-# Catch Exclusions
-exclude <- filter(subject_res, block == 7 & cp < 0.6)
-subject_res <- filter(subject_res, !(ID %in% exclude$ID))
-exclude
+# source("r-scripts/prelim_code.R")
+# source("r-scripts/subj_stats.R")
 
 # Factor and rename conditions
-subject_res$condition <- factor(subject_res$condition)
-levels(subject_res$condition) <- c(
+ctch_res$condition <- factor(ctch_res$condition)
+levels(ctch_res$condition) <- c(
   "Extreme 1st",
   "Extreme Last",
   "No Extreme"
@@ -45,7 +13,7 @@ levels(subject_res$condition) <- c(
 #Plot
 dodge <- position_dodge(.3)
 
-plt_catch <- ggplot(subject_res, aes(x = block, y = cp)) +
+plt_catch <- ggplot(ctch_res, aes(x = block, y = cp)) +
   geom_hline(yintercept = 0.5, linetype = 3) +
   geom_line(
     stat = "summary", fun = mean,

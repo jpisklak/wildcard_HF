@@ -39,16 +39,7 @@ kable(post_catch, 'html', digits = 3) %>%
 <h4>Condition totals:</h4>
 
 ```{r}
-kable(demo_info_f %>%
-  group_by(condition) %>%
-  summarise(n = length(ID),
-            age_mean = mean(age, na.rm = TRUE),
-            age_sd = sd(age, na.rm = TRUE),
-            age_median = median(age, na.rm = TRUE),
-            age_IQR = IQR(age, na.rm = TRUE),
-            dur_minutes_mean = mean(exp_dur/60, na.rm = TRUE),
-            dur_minutes_median = median(exp_dur/60, na.rm = TRUE)),
-  'html', digits = 3) %>%
+kable(cond_tot, "html", digits = 3) %>%
   kable_classic(full_width = T, position = "left", html_font = "Arial")
 ```
 

@@ -10,7 +10,7 @@
 <br>
   
 ```{r, fig.width = 9, fig.height = 6}
-#source('R Scripts/catch_trials.R')
+source('r-scripts/catch_trials.R')
 plt_catch
 ```
 
