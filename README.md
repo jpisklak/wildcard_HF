@@ -2,15 +2,15 @@
 
 ## Overview
 
-This repository contains all the data and R code used for the *wildcard_HF study*, alongside a summary document of all the analyses.
+This repository contains all the data and R code used for the analyses in the *wildcard_HF study* and generates an HTML document of the results.
 
-To view the analysis document, download `wildcard-results--xxxx-xx-xx.html` and open it in your web browser.
+To view the results document, download `wildcard-results--xxxx-xx-xx.html` and open it in your web browser.
 
 ## Contents
 
 The directory, file, and variable names within this repository are designed to be self-explanatory.
 
-- `generate_markdown.R`: An R script used to run all the files necessary to produce the analysis HTML document.
+- `generate_markdown.R`: An R script used to run all the files necessary to produce the HTML results document.
 
 - `./data`: Contains all the raw Pavlovia and Prolific files.
 
@@ -20,4 +20,4 @@ The directory, file, and variable names within this repository are designed to b
 
 - `./plots`: Stores all generated plots in both .png and .svg formats.
 
-- `./markdown`: Contains files used to generate the R Markdown document.
+- `./markdown`: Contains the R markdown files used to generate the HTML results document.
