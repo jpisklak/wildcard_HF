@@ -1,3 +1,4 @@
+# Run the following 4 lines to execute this script independently
 # setwd('../..')
 # source("r-scripts/prelim_code.R")
 # source("r-scripts/subj_stats.R")
@@ -52,7 +53,7 @@ plt_risky_std_blks <- ggplot(risky_res, aes(
        colour = "Choice Value:") +
   theme_custom() +
   theme(
-    axis.text.x = element_text(size = 20),
+    axis.text.x = element_text(size = 26),
     legend.position = 'bottom'
     )
 

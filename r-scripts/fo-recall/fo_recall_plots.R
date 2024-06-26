@@ -1,4 +1,5 @@
-# setwd('../..') #Running this R script alone requires being in the main dir.
+# Run the following 4 lines to execute this script independently
+# setwd('../..')
 # source("r-scripts/prelim_code.R")
 # source("r-scripts/subj_stats.R")
 # source("r-scripts/fo-recall/fo_recall_filter.R")

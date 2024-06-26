@@ -1,4 +1,5 @@
 # Run this script to generate the markdown file.
+# Note: if `wc_full_data.csv` is not generated, this is a slow process.
 main_dir <- getwd()
 source_dir <- file.path(main_dir, "markdown")
 output_dir <- main_dir

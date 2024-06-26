@@ -1,3 +1,4 @@
+# Run the following 4 lines to execute this script independently
 # setwd('../..')
 # source("r-scripts/prelim_code.R")
 # source("r-scripts/subj_stats.R")

@@ -1,4 +1,5 @@
-# setwd('../..') #Running this R script alone requires being in the main dir
+# Run the following 3 lines to execute this script independently
+# setwd('../..')
 # source("r-scripts/prelim_code.R")
 # source("r-scripts/subj_stats.R")
 
@@ -58,11 +59,11 @@ plt_catch <- ggplot(ctch_res, aes(x = block, y = cp)) +
 #Save Plot  
 ggsave('plots/choice-trials/catch_results.png',
        plot = plt_catch,
-       units = 'in', width = 16, height = 9, 
+       units = 'in', width = 14, height = 9, 
        dpi = 500)
 
 ggsave('plots/choice-trials/catch_results.svg',
        plot = plt_catch,
-       units = 'in', width = 16, height = 9)
+       units = 'in', width = 14, height = 9)
     
     

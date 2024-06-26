@@ -1,4 +1,5 @@
-#setwd('..') #Running this code in isolation requires being in the Analysis dir.
+# Run the following 2 lines to execute this script independently
+# setwd('..')
 # source("r-scripts/prelim_code.R")
 
 # Load data
