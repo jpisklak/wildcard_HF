@@ -105,7 +105,7 @@ hist + plot_spacer() + qq + plot_layout(widths = c(5, 1, 5))
   
 <br>
   
-```{r, fig.width = 11, fig.height = 6}
+```{r, fig.width = 14, fig.height = 8}
 source('r-scripts/choice-trials/risk_pref_filter.R')
 source('r-scripts/choice-trials/risk_pref_plots.R')
 plt_risky_std_blks

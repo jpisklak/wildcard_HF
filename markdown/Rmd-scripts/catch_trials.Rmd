@@ -2,16 +2,14 @@
 
 <details>
   <summary>
-  Plot - Session means
+  Plot - Block means and 95% CIs
   </summary>
   
 <br>
   
-```{r, fig.width = 7, fig.height = 4.5}
+```{r, fig.width = 10, fig.height = 7}
 source('r-scripts/choice-trials/catch_trials.R')
 plt_catch
 ```
-
-Errorbars = 95% CI
 
 </details> 
