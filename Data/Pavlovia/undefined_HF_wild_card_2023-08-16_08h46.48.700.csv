@@ -1,3 +1,0 @@
-﻿Condition,Low fixed image (Door1),Low risky image (Door2),High fixed image (Door3),High risky image (Door4),Extreme Wild Card,NonExtreme Wild Card,,date,expName,psychopyVersion,OS,frameRate,PROLIFIC_PID,STUDY_ID,SESSION_ID,mouse_2.x,mouse_2.y,mouse_2.leftButton,mouse_2.midButton,mouse_2.rightButton,mouse_2.clicked_name
-1,resources/DBN.BMP,resources/DP.BMP,resources/DG.BMP,resources/DB.BMP,resources/DY.BMP,resources/DR.BMP,,2023-08-16_08h46.48.700,HF_wild_card,2022.2.4,Win32,6.025875108,60b36f7f827bf0582b62c63a,64d2fd46c836a06233681665,64dc7ec855301b020c69622a,,,,,,
-,,,,,,,,2023-08-16_08h46.48.700,HF_wild_card,2022.2.4,Win32,6.025875108,60b36f7f827bf0582b62c63a,64d2fd46c836a06233681665,64dc7ec855301b020c69622a,-0.001139283,-0.41796875,1,0,0,agree
