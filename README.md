@@ -1,15 +1,23 @@
-# wildcard_HF
+# README: wildcard_HF
 
-This repo contains all of the data and R code used for the wildcard_HF study.
+## Overview
 
-To view the analysis summary, just download `wildcard-results--xxxx-xx-xx.html` and open it in your computer's web browser.
+This repository contains all the data and R code used for the *wildcard_HF study*, alongside a summary document of all the analyses.
 
----
+To view the analysis document, download `wildcard-results--xxxx-xx-xx.html` and open it in your web browser.
 
-If you want to download the whole repo, the file `Gen_Rmd_Doc.R` will generate a new results summary html file.
+## Contents
 
-- `./data`: contains all the raw Pavlovia and Prolific files.
-  - `wc_full_data.csv`: all the merged Pavlovia and Prolific files with better column names. This file contains all incomplete and aborted data as well.
-- `./r-scripts`: contains a variety of scripts to do specific things like merge the raw data files, plot the risky choice results, etc. These files are sourced in the markdown generation. If you want to run one of these scripts on its own, you will need to adjust the working directory to `./wildcard_HF`.
-- `./plots`: stores all plots that I have generated as both a .png and .svg.
-- `./markdown`: contains files which generate the R Markdown document.
+The directory, file, and variable names within this repository are designed to be self-explanatory.
+
+- `generate_markdown.R`: An R script used to run all the files necessary to produce the analysis HTML document.
+
+- `./data`: Contains all the raw Pavlovia and Prolific files.
+
+  - `wc_full_data.csv`: All the merged Pavlovia and Prolific files with improved column names, including incomplete and aborted data.
+
+- `./r-scripts`: Contains scripts for specific tasks such as merging raw data files, plotting risky choice results, etc. These files are sourced in the markdown generation. To run one of these scripts independently, adjust the working directory to `./wildcard_HF` and run the dependencies listed in the script.
+
+- `./plots`: Stores all generated plots in both .png and .svg formats.
+
+- `./markdown`: Contains files used to generate the R Markdown document.
