@@ -1,0 +1,2 @@
+﻿Condition,Low fixed image (Door1),Low risky image (Door2),High fixed image (Door3),High risky image (Door4),NonExtreme Wild Card 1,NonExtreme Wild Card 2,,date,expName,psychopyVersion,OS,frameRate,PROLIFIC_PID,STUDY_ID,SESSION_ID
+2,resources/DR.BMP,resources/DP.BMP,resources/DBN.BMP,resources/DY.BMP,resources/DG.BMP,resources/DB.BMP,,2023-08-16_08h44.25.332,HF_wild_card,2022.2.4,MacIntel,5.454436366,5fcfb1fe79b8060e0662270a,64d2fd46c836a06233681665,64dc7dd5fcf2642c89e295ca
