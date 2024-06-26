@@ -1,0 +1,176 @@
+---
+title: "WildCard Results"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float:
+      collapsed: false
+      smooth_scroll: false
+bibliography: bibTex/refs.bib
+csl: bibTex/apa-with-abstract.csl
+nocite: |
+  @R
+---
+
+<!-- https://www.w3schools.com/tags/tag_details.asp -->
+<style>
+details > summary {
+  padding: 4px;
+  cursor: pointer;
+  font-size: 1.5em;
+}
+
+h1.title{font-weight: bold; font-size: 3em}
+h1{text-align: left; font-weight: bold; font-size: 2.5em}
+h2{text-align: left; font-weight: bold; font-size: 2em}
+h3{text-align: left; font-size: 2em}
+h4{text-align: left; font-size: 1.5em}
+</style>
+
+```{r setup, include = FALSE}
+options(pillar.print_max = Inf)
+
+if (!require(knitr)) {
+  install.packages("knitr")
+}
+if (!require(kableExtra)) {
+  install.packages("kableExtra")
+}
+if (!require(tidyverse)) {
+  install.packages("tidyverse")
+}
+
+library(knitr)
+library(kableExtra)
+library(tidyverse)
+
+# Directory
+# opts_knit$set(root.dir = dirname(getwd())) #Rendering from this .Rmd file.
+opts_knit$set(root.dir = main_dir) # Rendering from Gen_Rmd_Doc
+
+opts_chunk$set(
+  echo = FALSE,
+  # include = FALSE,
+  warning = FALSE,
+  message = FALSE,
+  fig.width = 7, fig.height = 5
+)
+```
+
+```{r}
+# Generate data file if necessary
+if (!file.exists("data/wc_full_data.csv")) {
+  source("r-scripts/data_merge.R")
+}
+
+# Load preliminaries
+source("r-scripts/prelim_code.R")
+```
+
+<br>
+
+---
+
+<br>
+
+<!-- Participant Information -->
+# **Participant Information**
+
+```{r child = 'markdown/Rmd-scripts/subject_info.Rmd'}
+```
+
+<br>
+
+---
+
+<br>
+
+<!-- Catch Trials -->
+# **Catch Trials**
+
+```{r child = 'markdown/Rmd-scripts/catch_trials.Rmd'}
+```
+
+<br>
+
+---
+
+<br>
+
+<!-- Risk-Prefer Trials -->
+# **Risk-Preference**
+
+```{r child = 'markdown/Rmd-scripts/risk_pref.Rmd'}
+```
+
+<br>
+
+---
+
+<br>
+
+<!-- First-Outcome Judgement -->
+# **First-Outcome Judgement**
+
+```{r child = 'markdown/Rmd-scripts/fo_recall.Rmd'}
+```
+
+<br>
+
+---
+
+<br>
+
+<!-- Frequency Judgement -->
+# **Frequency Judgement**
+
+```{r child = 'markdown/Rmd-scripts/freq_judge.Rmd'}
+```
+
+<br>
+
+---
+
+<br>
+
+# **R Citations**
+
+`r R.version$version.string`
+
+- nlme (`r packageVersion('nlme')`) [@nlme]
+- patchwork (`r packageVersion('patchwork')`) [@patchwork]
+- RColorBrewer (`r packageVersion('RColorBrewer')`) [@RColorBrewer]
+- rcompanion (`r packageVersion('rcompanion')`) [@rcompanion]
+- tidyverse (`r packageVersion('tidyverse')`) [@tidyverse]
+- WRS2 (`r packageVersion('WRS2')`) [@WRS2]
+
+<br>
+
+---
+
+<br>
+
+# **References**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

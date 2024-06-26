@@ -1,0 +1,152 @@
+<!-- Complications -->
+
+<details>
+  <summary>
+  Complications
+  </summary>
+
+<br>
+
+It seems debatable whether the frequency judgement data should be plotted and analysed using means.  The data is almost certainly *qualitative* in nature.  For example, there is no reason to assume one person's judgment of 50% is the same as another person's. One person's 50% might be another's 70%. It is worth remembering **each participant is not providing a objectively measurable frequency, they are giving their opinion about what they believe real frequency is (i.e., it is subjective not objective).**
+
+While the frequency judgement data has been plotted and analysed with means to remain consistent with the prior extreme-outcome work, there is a good argument that this data should be treated as nominal - similar to the first-outcome results (some might wonder why the two are being treated differently).  Admittedly, many (in Psychology) would probably argue this data is "sufficiently" quantitative given its wide sample space. Others might argue that it is qualitative, but ordinal (not nominal) and a Kruskal–Wallis test should be used.
+
+<br>
+
+</details>
+
+<!-- Plot -->
+
+<details>
+  <summary>
+  Plot - Means and 95% CIs
+  </summary>
+  
+<br>
+  
+```{r, fig.width = 15, fig.height = 7}
+source('r-scripts/freq-judge/freq_judge_filter.R')
+source('r-scripts/freq-judge/freq_judge_plot.R')
+
+plt_fj_means
+```
+
+<br>
+
+</details>
+
+<details>
+  <summary>
+  Table - Plotting Values
+  </summary>
+  
+<br>
+
+```{r}
+kable(fj_bar_tab, 'html', digits = 3) %>%
+  kable_classic(full_width = T, position = "center", html_font = "Arial")
+```
+
+<br>
+
+</details>
+
+<details>
+  <summary>
+  2x3 ANOVA using linear mixed-effects models fit by maximum likelihood
+  </summary>
+  
+```{r}
+source('r-scripts/freq-judge/freq_judge_analysis.R')
+```
+
+<br>
+
+<h4> Main Effects </h4>
+
+```{r}
+kable(aov_2x3, 'html', digits = 3) %>%
+  kable_classic(full_width = T, position = "center", html_font = "Arial")
+```
+
+```{r}
+df_diffs <- c(NA, diff(aov_2x3$df))
+l_rats <- round(aov_2x3$L.Ratio, 2)
+p_vals <- ifelse(aov_2x3$p.value < 0.001,
+  "< 0.001", round(aov_2x3$p.value, 3)
+)
+R2_vals <- round(aov_2x3$pseudo_R2, 2)
+BF_vals <-
+  ifelse(aov_2x3$BF_10 > 150, "> 150",
+    ifelse(aov_2x3$BF_10 < .01, "< .01",
+      round(aov_2x3$BF_10, 3)
+    )
+  )
+```
+
+**Main Effect of Condition:**
+
+$\chi^2(`r df_diffs[2]`) = `r l_rats[2]`$, $p = `r p_vals[2]`$, $R^2_N = `r R2_vals[2]`$, $BF_{10} = `r BF_vals[2]`$
+
+**Main Effect of Context / Value (high vs. low):**
+
+$\chi^2(`r df_diffs[3]`) = `r l_rats[3]`$, $p `r p_vals[3]`$, $R^2_N = `r R2_vals[3]`$, $BF_{10} `r BF_vals[3]`$
+
+**Interaction:**
+
+$\chi^2(`r df_diffs[4]`) = `r l_rats[4]`$, $p = `r p_vals[4]`$, $R^2_N = `r R2_vals[4]`$, $BF_{10} = `r BF_vals[4]`$
+
+<br>
+
+<h4> Planned Contrasts </h4>
+
+```{r}
+kable(pc, 'html', digits = 3) %>%
+  kable_classic(full_width = T, position = "center", html_font = "Arial")
+```
+
+```{r}
+b_vals <- round(pc$Value, 3)
+t_stat <- round(pc$`t-value`, 2)
+df_vals <- pc$DF
+p_vals <- ifelse(pc$`p-value` < 0.001, 
+                 '< 0.001', round(pc$`p-value`, 3))
+r_vals <- round(pc$r_effect, 3)
+```
+
+**Extreme First vs. No Extreme:**
+
+$b = `r b_vals[2]`$, $t(`r df_vals[2]`) = `r t_stat[2]`$, $p = `r p_vals[2]`$, $r = `r r_vals[2]`$
+
+**Extreme Last vs. No Extreme:**
+
+$b = `r b_vals[3]`$, $t(`r df_vals[3]`) = `r t_stat[3]`$, $p = `r p_vals[3]`$, $r = `r r_vals[3]`$
+
+**Extreme First vs. No Extreme | Context (High vs. Low):**
+
+$b = `r b_vals[5]`$, $t(`r df_vals[5]`) = `r t_stat[5]`$, $p = `r p_vals[5]`$, $r = `r r_vals[5]`$
+
+**Extreme Last vs. No Extreme | Context (High vs. Low):**
+
+$b = `r b_vals[6]`$, $t(`r df_vals[6]`) = `r t_stat[6]`$, $p = `r p_vals[6]`$, $r = `r r_vals[6]`$
+
+<br>
+
+</details>
+
+<!-- Notes -->
+
+<details>
+  <summary>
+  Notes
+  </summary>
+
+- E1 = Extreme First; E2 = Extreme Last; NE = No Extreme
+
+- $R^2_N$ is Nagelkerke's (also known as Cragg and Uhler's) pseudo $R^2$ [@Nagelkerke]. It isn't interpreted in exactly the same way as a $R^2$ based on ordinary least-squares regression, but it is bounded by 0 and 1 and higher values indicate a better model fit.
+
+- Bayes Factors are reported as Inverse Bayes Factors, this means larger values
+indicate greater support for the effect. Anything less than 1 should be considered as contributing no evidence.
+
+
+</details>

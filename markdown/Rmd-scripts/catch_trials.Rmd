@@ -1,0 +1,17 @@
+<!-- Catch Trial Plots -->
+
+<details>
+  <summary>
+  Plot - Session means
+  </summary>
+  
+<br>
+  
+```{r, fig.width = 7, fig.height = 4.5}
+source('r-scripts/choice-trials/catch_trials.R')
+plt_catch
+```
+
+Errorbars = 95% CI
+
+</details> 
