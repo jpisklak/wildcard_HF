@@ -55,6 +55,7 @@ hist <- ggplot(risky_res_b7, aes(x = cp)) +
   geom_histogram(aes(fill = risky_choice),
     colour = "black",
     bins = 13
+    #binwidth = function(x) 2 * IQR(x) / (length(x)^(1/3))
   ) +
   facet_grid(risky_choice ~ condition) +
   scale_x_continuous(breaks = seq(0, 1, 0.5)) +
