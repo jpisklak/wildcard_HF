@@ -55,13 +55,6 @@ summary(int_mod)
 aov_2x3 <- data.frame(anova(base, cond_mod, HL_mod, int_mod))
 aov_2x3 <- aov_2x3[, 2:ncol(aov_2x3)]
 
-# Nagelkerke (Cragg and Uhler) Pseudo R-squared
-cond_R2 <- nagelkerke(cond_mod, null = base)$Pseudo.R.squared.for.model.vs.null[3]
-HL_R2 <- nagelkerke(HL_mod, null = cond_mod)$Pseudo.R.squared.for.model.vs.null[3]
-int_R2 <- nagelkerke(int_mod, null = HL_mod)$Pseudo.R.squared.for.model.vs.null[3]
-
-aov_2x3$pseudo_R2 <- c(NA, cond_R2, HL_R2, int_R2)
-
 # Inverse Bayes Factor
 delta_BIC <- aov_2x3$BIC[2:nrow(aov_2x3)] - aov_2x3$BIC[1:(nrow(aov_2x3) - 1)]
 BF01 <- exp(delta_BIC / 2)

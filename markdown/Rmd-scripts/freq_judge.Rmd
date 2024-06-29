@@ -75,7 +75,6 @@ l_rats <- round(aov_2x3$L.Ratio, 2)
 p_vals <- ifelse(aov_2x3$p.value < 0.001,
   "< 0.001", round(aov_2x3$p.value, 3)
 )
-R2_vals <- round(aov_2x3$pseudo_R2, 2)
 BF_vals <-
   ifelse(aov_2x3$BF_10 > 150, "> 150",
     ifelse(aov_2x3$BF_10 < .01, "< .01",
@@ -86,15 +85,15 @@ BF_vals <-
 
 **Main Effect of Condition:**
 
-$\chi^2(`r df_diffs[2]`) = `r l_rats[2]`$, $p = `r p_vals[2]`$, $R^2_N = `r R2_vals[2]`$, $BF_{10} = `r BF_vals[2]`$
+$\chi^2(`r df_diffs[2]`) = `r l_rats[2]`$, $p = `r p_vals[2]`$, $BF_{10} = `r BF_vals[2]`$
 
 **Main Effect of Context / Value (high vs. low):**
 
-$\chi^2(`r df_diffs[3]`) = `r l_rats[3]`$, $p `r p_vals[3]`$, $R^2_N = `r R2_vals[3]`$, $BF_{10} `r BF_vals[3]`$
+$\chi^2(`r df_diffs[3]`) = `r l_rats[3]`$, $p `r p_vals[3]`$, $BF_{10} `r BF_vals[3]`$
 
 **Interaction:**
 
-$\chi^2(`r df_diffs[4]`) = `r l_rats[4]`$, $p = `r p_vals[4]`$, $R^2_N = `r R2_vals[4]`$, $BF_{10} = `r BF_vals[4]`$
+$\chi^2(`r df_diffs[4]`) = `r l_rats[4]`$, $p = `r p_vals[4]`$, $BF_{10} = `r BF_vals[4]`$
 
 <br>
 
@@ -142,8 +141,6 @@ $b = `r b_vals[6]`$, $t(`r df_vals[6]`) = `r t_stat[6]`$, $p = `r p_vals[6]`$, $
   </summary>
 
 - E1 = Extreme First; E2 = Extreme Last; NE = No Extreme
-
-- $R^2_N$ is Nagelkerke's (also known as Cragg and Uhler's) pseudo $R^2$ [@Nagelkerke]. It isn't interpreted in exactly the same way as a $R^2$ based on ordinary least-squares regression, but it is bounded by 0 and 1 and higher values indicate a better model fit.
 
 - Bayes Factors are reported as Inverse Bayes Factors, this means larger values
 indicate greater support for the effect. Anything less than 1 should be considered as contributing no evidence.

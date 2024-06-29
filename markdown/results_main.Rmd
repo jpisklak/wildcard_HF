@@ -24,7 +24,7 @@ details > summary {
 
 h1.title{font-weight: bold; font-size: 3em}
 h1{text-align: left; font-weight: bold; font-size: 2.5em}
-h2{text-align: left; font-weight: bold; font-size: 2em}
+h2{text-align: left; font-weight: normal; font-style: italic; font-size: 2em}
 h3{text-align: left; font-size: 2em}
 h4{text-align: left; font-size: 1.5em}
 </style>
