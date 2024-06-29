@@ -1,7 +1,8 @@
 # Run the following 3 lines to execute this script independently
-# setwd('../..')
+# setwd('../..') # assumes working dir is ./r-scripts/choice-trials
 # source("r-scripts/prelim_code.R")
 # source("r-scripts/subj_stats.R")
+#-------------------------------------------------------------------------------
 
 # Factor and rename conditions
 ctch_res$condition <- factor(ctch_res$condition)

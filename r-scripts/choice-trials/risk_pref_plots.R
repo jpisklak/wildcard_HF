@@ -1,8 +1,10 @@
 # Run the following 4 lines to execute this script independently
-# setwd('../..')
+# setwd('../..') # assumes working dir is ./r-scripts/choice-trials
 # source("r-scripts/prelim_code.R")
 # source("r-scripts/subj_stats.R")
 # source("r-scripts/choice-trials/risk_pref_filter.R")
+#-------------------------------------------------------------------------------
+
 
 
 # Conventional EO Plot by Block

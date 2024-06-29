@@ -1,7 +1,8 @@
 # Run the following 3 lines to execute this script independently
-# setwd('../..')
+# setwd('../..') # assumes working dir is ./r-scripts/fo-recall
 # source("r-scripts/prelim_code.R")
 # source("r-scripts/subj_stats.R")
+#-------------------------------------------------------------------------------
 
 fo <- filter(
   data, phase == "FO_recall" &

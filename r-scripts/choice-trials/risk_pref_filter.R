@@ -1,7 +1,8 @@
 # Run the following 3 lines to execute this script independently
-# setwd('../..')
+# setwd('../..') # assumes working dir is ./r-scripts/choice-trials
 # source("r-scripts/prelim_code.R")
 # source("r-scripts/subj_stats.R")
+#-------------------------------------------------------------------------------
 
 risky <- filter(
   data, trial_type == "decisionTrl" &

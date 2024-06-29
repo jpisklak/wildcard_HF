@@ -1,8 +1,9 @@
 # Run the following 4 lines to execute this script independently
-# setwd('..')
+# setwd('..') # assumes working dir is ./r-scripts/fo-recall
 # source("r-scripts/prelim_code.R")
 # source("r-scripts/subj_stats.R")
 # source("r-scripts/fo-recall/fo_recall_filter.R")
+#-------------------------------------------------------------------------------
 
 # Create category column for results
 fo <- fo %>%
