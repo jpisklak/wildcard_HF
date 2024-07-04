@@ -27,7 +27,10 @@ plt_fo_prop <- ggplot(props, aes(x = FO_cat, y = prop, group = condition)) +
   theme(
     axis.text.x = element_text(size = 22),
     axis.text.y = element_text(size = 28),
-    #strip.text.y = element_text(size = 28),
+    strip.text.x = element_text(size = 26),
+    strip.text.y = element_text(
+      size = 26,
+      margin = unit(c(0, 0, 0, 5), "mm")),
     legend.position = "none",
     panel.spacing.x = unit(4, "lines"),
     panel.spacing.y = unit(2, "lines")
