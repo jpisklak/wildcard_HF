@@ -1,102 +1,3 @@
-<!-- Complications -->
-
-<details>
-  <summary>
-  Complications
-  </summary>
-
-<br>
-
-**Data is lumpy:**
-
-- There is not a lot of distinction among the measured choice proportions.  All of the measurements can be categorized in to just 13 bins (see table below). For future studies, it might be worth adding additional testing trials to obtain a more continuous set of measurements. 
-
-```{r}
-source('r-scripts/choice-trials/risk_pref_filter.R')
-
-bins <- data.frame(table(risky_res_b7$cp))
-bins$Var1 <- as.numeric(as.character(bins$Var1))
-bins$Freq <- as.integer(bins$Freq)
-colnames(bins) <- c('CP', 'Frequency')
-
-kable(t(bins), 'html', digits = 2) %>%
-  kable_classic(full_width = F, position = "center", html_font = "Arial")
-```
-
-<br>
-
-**High-value risky choices are bimodal**
-
-- For the high-value choice, most values are either 0 or 1 (see histograms below). This is actually a important aspect of the data that (probably?) hasn't been noticed/discussed in past extreme-outcome papers.  Looking at the means, the high-value choices appear to be around indifference ($\approx 0.46$), but the histograms show that this is an artifact of the aggregation.
-
-- At the level of the individual, most participants either completely prefer the fixed alternative or completely prefer the risky alternative with some in between. Statistically, it's not clear what the best way to handle this fact given the between- and within- subject manipulations. In any case, it's probably worth pointing out to the readers that the mean proportion for the high-value choices is not really describing the individual data all that accurately. **i.e., The population is indifferent; however, the individuals are not (generally speaking).**
-
-<br>
-
-**Low-value choices are heavily skewed**
-
-- By and large participants are only choosing the fixed option, creating very heavy skew.  Consequently, people are much more risk-averse in the low-value context than the means would suggest they are (compare the low value mean vs median choice proportions in the summary stat table).
-
-<br>
-
-**Classic ANOVA is probably inadequate**
-
-- A conventional ANOVA does not model this data very well. Note the non-normal residuals in the Q-Q plot below (from the ANOVA run on the differences). The pre-registration document calls for three separate ANOVAs, which are provided below. However, given the residuals, it's probably not wise to rely on a conventional ANOVA methodology. i.e., one based around ordinary least-squares (OLS). Consequently, an ANOVA using generalized least-squares (GLS) fit by maximum likelihood has been applied.
-
-- In addition to the three one-way ANOVAs declared in the pre-registration document, a 2x3 ANOVA using a linear mixed effects (LME) models fit by maximum likelihood has been run - because it seems like the more elegant way to approach this particular experimental design which has both between- and within- subjects factors.
-
-- Having said all that, no matter what approach you take (OLS, GLS, or LME), you will end up drawing the same conclusions. Though, the 2x3 LME approach seems the most elegant way of arriving at them and will probably read the best in the manuscript.
-
-<br>
-
-```{r, fig.width = 19, fig.height = 7}
-# Histograms
-hist <- ggplot(risky_res_b7, aes(x = cp)) +
-  geom_histogram(aes(fill = risky_choice),
-    colour = "black",
-    bins = 13
-    #binwidth = function(x) 2 * IQR(x) / (length(x)^(1/3))
-  ) +
-  facet_grid(risky_choice ~ condition) +
-  scale_x_continuous(breaks = seq(0, 1, 0.5)) +
-  theme_minimal() +
-  theme(
-    axis.text = element_text(colour = "black", size = 20),
-    axis.title = element_text(colour = "black", size = 20),
-    strip.text = element_text(
-      size = 20, colour = "black",
-      margin = margin(1, 0, 1, 0, "cm")
-    ),
-    panel.spacing = unit(1.25, "lines"),
-    legend.position = 'none'
-  )
-
-source('r-scripts/choice-trials/pr_risky_diff_aov.R')
-
-# QQ plot of difference model
-qq <- ggplot(mapping = aes(sample = diff_mod$residuals)) +
-  stat_qq() +
-  stat_qq_line() +
-  xlab("Theoretical Quantiles") +
-  ylab("Residuals") +
-  theme_classic() +
-  theme(
-    axis.text = element_text(colour = "black", size = 20),
-    axis.title = element_text(colour = "black", size = 20),
-    strip.text = element_text(
-      size = 14, colour = "black",
-      margin = margin(1, 0, 1, 0, "cm")
-    ),
-    panel.spacing = unit(1.25, "lines")
-  )
-
-hist + plot_spacer() + qq + plot_layout(widths = c(5, 1, 5))
-```
-
-<br>
-
-</details>
-
 <!-- Plot -->
 
 <details>
@@ -106,11 +7,32 @@ hist + plot_spacer() + qq + plot_layout(widths = c(5, 1, 5))
   
 <br>
   
-```{r, fig.width = 14, fig.height = 8}
+```{r, out.width = '100%', out.height = '100%'}
 source('r-scripts/choice-trials/risk_pref_filter.R')
 source('r-scripts/choice-trials/risk_pref_plots.R')
-plt_risky_std_blks
+include_graphics(
+  file.path(main_dir,"plots/choice-trials/plt_risky_blk.svg")
+)
 ```
+
+<br>
+
+</details> 
+
+<details>
+  <summary>
+  Plot - Condition Differences with 95% CIs (Block 7)
+  </summary>
+  
+<br>
+  
+```{r, out.width = '65%', out.height = '65%'}
+include_graphics(
+  file.path(main_dir, "plots/choice-trials/plt_risky_diff.svg")
+)
+```
+
+<br>
 
 </details> 
 
@@ -123,7 +45,7 @@ plt_risky_std_blks
   
 <br>
 
-```{r, fig.width = 11, fig.height = 6}
+```{r}
 s <- risky_res %>%
   filter(block == 7) %>% 
   group_by(condition, risky_choice) %>%
@@ -143,8 +65,6 @@ kable(s, 'html', digits = 3) %>%
 <br>
 
 </details>
-
-## Pre-Registered Analysis
 
 <!-- One-Way ANOVA on Difference (High - Low) -->
 
@@ -360,7 +280,7 @@ kable(ph_lv, 'html', digits = 3) %>%
   Notes
   </summary>
 
-- E1 = Extreme First; E2 = Extreme Last; NE = No Extreme
+-  NE = No Extreme; E1 = Extreme First; E2 = Extreme Last
 
 - ANOVAs were run using generalized least-squares fit by maximum likelihood.
 
@@ -372,102 +292,4 @@ kable(ph_lv, 'html', digits = 3) %>%
 
 </details>
 
-
-## Alternative Analysis
-
-<!-- 2 X 3 LME ANOVA -->
-
-<details>
-  <summary>
-  2x3 ANOVA using linear mixed-effects models fit by maximum likelihood
-  </summary>
-  
-```{r}
-source('r-scripts/choice-trials/2x3_aov_risky_aov.R')
-```
-
-<h4> Main Effects </h4>
-
-```{r}
-kable(aov_2x3, 'html', digits = 3) %>%
-  kable_classic(full_width = T, position = "center", html_font = "Arial")
-```
-
-```{r}
-df_diffs <- c(NA, diff(aov_2x3$df))
-l_rats <- round(aov_2x3$L.Ratio, 2)
-p_vals <- ifelse(aov_2x3$p.value < 0.001, 
-                 '< 0.001', round(aov_2x3$p.value, 3))
-BF_vals <- 
-  ifelse(aov_2x3$BF_10 > 150, '> 150',
-    ifelse(aov_2x3$BF_10 < .01, '< .01',
-      round(aov_2x3$BF_10, 3)
-    )
-  )
-```
-
-**Main Effect of Condition:**
-
-$\chi^2(`r df_diffs[2]`) = `r l_rats[2]`, p = `r p_vals[2]`, BF_{10} = `r BF_vals[2]`$
-
-**Main Effect of Context / Value (high vs. low):**
-
-$\chi^2(`r df_diffs[3]`) = `r l_rats[3]`, p `r p_vals[3]`, BF_{10} `r BF_vals[3]`$
-
-**Interaction:**
-
-$\chi^2(`r df_diffs[4]`) = `r l_rats[4]`, p = `r p_vals[4]`, BF_{10} = `r BF_vals[4]`$
-
-<br>
-
-<h4> Planned Contrasts </h4>
-
-```{r}
-kable(pc, 'html', digits = 3) %>%
-  kable_classic(full_width = T, position = "center", html_font = "Arial")
-```
-
-```{r}
-b_vals <- round(pc$Value, 3)
-t_stat <- round(pc$`t-value`, 2)
-df_vals <- pc$DF
-p_vals <- ifelse(pc$`p-value` < 0.001, 
-                 '< 0.001', round(pc$`p-value`, 3))
-r_vals <- round(pc$r_effect, 3)
-```
-
-**Extreme First vs. No Extreme:**
-
-$b = `r b_vals[2]`, t(`r df_vals[2]`) = `r t_stat[2]`, p = `r p_vals[2]`, r = `r r_vals[2]`$
-
-**Extreme Last vs. No Extreme:**
-
-$b = `r b_vals[3]`, t(`r df_vals[3]`) = `r t_stat[3]`, p = `r p_vals[3]`, r = `r r_vals[3]`$
-
-**Extreme First vs. No Extreme | Context (High vs. Low):**
-
-$b = `r b_vals[5]`, t(`r df_vals[5]`) = `r t_stat[5]`, p = `r p_vals[5]`, r = `r r_vals[5]`$
-
-**Extreme Last vs. No Extreme | Context (High vs. Low):**
-
-$b = `r b_vals[6]`, t(`r df_vals[6]`) = `r t_stat[6]`, p = `r p_vals[6]`, r = `r r_vals[6]`$
-
-<br>
-
-</details>
-
-<!-- Notes -->
-
-<details>
-  <summary>
-  Notes
-  </summary>
-
-- E1 = Extreme First; E2 = Extreme Last; NE = No Extreme
-
-- Bayes Factors are reported as Inverse Bayes Factors, this means larger values
-indicate greater support for the effect. Anything less than 1 should be considered as contributing no evidence.
-
-
-</details>
 

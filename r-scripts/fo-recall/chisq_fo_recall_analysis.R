@@ -1,5 +1,5 @@
 # Run the following 4 lines to execute this script independently
-# setwd('..') # assumes working dir is ./r-scripts/fo-recall
+# setwd('../..') # assumes working dir is ./r-scripts/fo-recall
 # source("r-scripts/prelim_code.R")
 # source("r-scripts/subj_stats.R")
 # source("r-scripts/fo-recall/fo_recall_filter.R")

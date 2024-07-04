@@ -7,9 +7,11 @@
   
 <br>
   
-```{r, fig.width = 10, fig.height = 7}
+```{r, out.width = '100%'}
 source('r-scripts/choice-trials/catch_trials.R')
-plt_catch
+include_graphics(
+  file.path(main_dir, "plots/choice-trials/catch_results.svg")
+)
 ```
 
 </details> 

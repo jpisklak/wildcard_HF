@@ -2,6 +2,8 @@
 pkgs <- c(
   "tidyverse",
   "patchwork",
+  "ggh4x",
+  "Hmisc",
   "rcompanion",
   "nlme",
   "RColorBrewer",

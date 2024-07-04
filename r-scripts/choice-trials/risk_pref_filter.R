@@ -40,11 +40,12 @@ risky_res <- risky %>%
 # Factor and rename conditions
 risky_res$block <- factor(risky_res$block)
 
-risky_res$condition <- factor(risky_res$condition)
+risky_res$condition <- factor(risky_res$condition, 
+                              levels = c(2, 0, 1))
 levels(risky_res$condition) <- c(
+  "No Extreme",
   "Extreme 1st",
-  "Extreme Last",
-  "No Extreme"
+  "Extreme Last"
 )
 
 risky_res$risky_choice <- factor(risky_res$risky_choice,

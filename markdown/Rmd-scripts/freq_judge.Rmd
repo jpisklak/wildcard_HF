@@ -24,11 +24,13 @@ While the frequency judgement data has been plotted and analysed with means to r
   
 <br>
   
-```{r, fig.width = 15, fig.height = 7}
+```{r, out.width = '100%', out.height = '100%'}
 source('r-scripts/freq-judge/freq_judge_filter.R')
 source('r-scripts/freq-judge/freq_judge_plot.R')
 
-plt_fj_means
+include_graphics(
+  file.path(main_dir,"plots/freq-judge/plt_fj_means.svg")
+)
 ```
 
 <br>
@@ -140,7 +142,7 @@ $b = `r b_vals[6]`$, $t(`r df_vals[6]`) = `r t_stat[6]`$, $p = `r p_vals[6]`$, $
   Notes
   </summary>
 
-- E1 = Extreme First; E2 = Extreme Last; NE = No Extreme
+- NE = No Extreme; E1 = Extreme First; E2 = Extreme Last
 
 - Bayes Factors are reported as Inverse Bayes Factors, this means larger values
 indicate greater support for the effect. Anything less than 1 should be considered as contributing no evidence.

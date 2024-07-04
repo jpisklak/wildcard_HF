@@ -16,11 +16,11 @@ fj_long <- filter(
 )
 
 # Contrasts
-E1_v_NE <- c(1, 0, 0)
-E2_v_NE <- c(0, 1, 0)
+E1_v_NE <- c(0, 1, 0)
+E2_v_NE <- c(0, 0, 1)
 contrasts(fj_long$condition) <- cbind(E1_v_NE, E2_v_NE)
 
-H_v_L <- c(-1, 1)
+H_v_L <- c(1, -1)
 contrasts(fj_long$FJ_context) <- H_v_L
 
 fj_long$ID <- factor(fj_long$ID)

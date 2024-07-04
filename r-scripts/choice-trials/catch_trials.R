@@ -5,11 +5,13 @@
 #-------------------------------------------------------------------------------
 
 # Factor and rename conditions
-ctch_res$condition <- factor(ctch_res$condition)
+ctch_res$condition <- factor(ctch_res$condition,
+  levels = c(2, 0, 1)
+)
 levels(ctch_res$condition) <- c(
+  "No Extreme",
   "Extreme 1st",
-  "Extreme Last",
-  "No Extreme"
+  "Extreme Last"
 )
 
 #Plot
@@ -60,11 +62,11 @@ plt_catch <- ggplot(ctch_res, aes(x = block, y = cp)) +
 #Save Plot  
 ggsave('plots/choice-trials/catch_results.png',
        plot = plt_catch,
-       units = 'in', width = 14, height = 9, 
+       units = 'in', width = 11, height = 8, 
        dpi = 500)
 
 ggsave('plots/choice-trials/catch_results.svg',
        plot = plt_catch,
-       units = 'in', width = 14, height = 9)
+       units = 'in', width = 11, height = 8)
     
     

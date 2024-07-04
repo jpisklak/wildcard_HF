@@ -16,11 +16,11 @@ fj <- filter(
   )
 
 # Rename condition levels
-fj$condition <- factor(fj$condition)
+fj$condition <- factor(fj$condition, levels = c(2, 0, 1))
 levels(fj$condition) <- c(
+  "No Extreme",
   "Extreme 1st",
-  "Extreme Last",
-  "No Extreme"
+  "Extreme Last"
 )
 
 # Create context column
@@ -63,8 +63,8 @@ fj_long <- fj_long %>%
 # Reorder context levels
 fj_long$FJ_context <- factor(fj_long$FJ_context,
   levels = c(
-    "Low",
-    "High"
+    "High",
+    "Low"
   )
 )
 

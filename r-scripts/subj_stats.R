@@ -47,11 +47,12 @@ demo_info <- filter(data, trial_tot == 300 &
 # Make age numeric and rename condition
 demo_info$age <- as.numeric(demo_info$age)
 
-demo_info$condition <- factor(demo_info$condition)
+demo_info$condition <- factor(demo_info$condition,
+                              levels = c(2, 0, 1))
 levels(demo_info$condition) <- c(
+  "No Extreme",
   "Extreme 1st",
-  "Extreme 2nd",
-  "No Extreme"
+  "Extreme 2nd"
 )
 
 # Stats pre catch exclusion

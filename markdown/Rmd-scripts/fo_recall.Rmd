@@ -57,16 +57,18 @@ This would tell you whether reporting the extreme option varied according to con
   
 <br>
   
-```{r, fig.width = 15, fig.height = 6}
+```{r, out.width = '100%', out.height = '100%'}
 source('r-scripts/fo-recall/fo_recall_filter.R')
 source('r-scripts/fo-recall/fo_recall_plots.R')
 
-plt_fo_prop
+include_graphics(
+  file.path(main_dir,"plots/fo-recall/plt_fo_prop.svg")
+)
 ```
 
 Note: 
 
-- Proportions are taken within condition and context (high/low). E.g., All the green bars on the left side sum to 1, all the green bars on the right side sum to one, and so on. 
+- Proportions are taken within condition and context (high/low). E.g., All the green bars in the top left sum to 1, all the orange bars in the top middle sum to 1, and so on. 
 - The colour palette is colourblind friendly.
 
 <br>

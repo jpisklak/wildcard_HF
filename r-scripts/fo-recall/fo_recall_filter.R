@@ -15,11 +15,11 @@ fo <- filter(
   )
 
 # Rename condition levels
-fo$condition <- factor(fo$condition)
+fo$condition <- factor(fo$condition, levels = c(2, 0, 1))
 levels(fo$condition) <- c(
+  "No Extreme",
   "Extreme 1st",
-  "Extreme Last",
-  "No Extreme"
+  "Extreme Last"
 )
 
 # Create context column

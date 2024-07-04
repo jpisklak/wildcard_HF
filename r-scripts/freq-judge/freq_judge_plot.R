@@ -14,6 +14,7 @@ plt_fj_means <- ggplot(fj_long, aes(
   x = FJ_outcome, y = FJ_resp,
   fill = condition, group = condition
 )) +
+  geom_hline(yintercept = 50, linetype = 3) +
   geom_bar(
     stat = "summary", fun = mean,
     colour = "black",
@@ -30,27 +31,32 @@ plt_fj_means <- ggplot(fj_long, aes(
     position = dodge
   ) +
   scale_fill_manual(values = brewer.pal(n = 8, name = "Dark2")) +
-  facet_wrap(~FJ_context, scales = "free_x") +
+  #facet_wrap(~FJ_context, scales = "free_x") +
+  facet_grid2(FJ_context ~ condition, scales = 'free_x', independent = 'x') +
   coord_cartesian(ylim = c(0, 100)) +
   xlab("") +
   ylab("Judged Percentage") +
   labs(fill = "Condition") +
   theme_custom() +
   theme(
-    legend.position = "right",
-    panel.spacing.x = unit(3, "lines")
+    axis.text.x = element_text(size = 22),
+    axis.text.y = element_text(size = 28),
+    strip.text.y = element_text(margin = unit(c(0, 0, 0, 5), "mm")),
+    legend.position = "none",
+    panel.spacing.x = unit(4, "lines"),
+    panel.spacing.y = unit(2, "lines")
   )
 
 # Save Plot
 ggsave("plots/freq-judge/plt_fj_means.png",
   plot = plt_fj_means,
-  units = "in", width = 16, height = 9,
+  units = "in", width = 11, height = 8,
   dpi = 500
 )
 
 ggsave("plots/freq-judge/plt_fj_means.svg",
   plot = plt_fj_means,
-  units = "in", width = 16, height = 9
+  units = "in", width = 11, height = 8
 )
 
 # Acommpanying table
@@ -66,68 +72,3 @@ fj_bar_tab <- fj_long %>%
 
 lookup <- c(context = "FJ_context", outcome = "FJ_outcome")
 fj_bar_tab <- rename(fj_bar_tab, all_of(lookup))
-
-
-# EO Violin Plot
-#-------------------------------------------------------------------------------
-# dodge <- position_dodge(.6)
-# 
-# plt_fj_violin <- ggplot(fj_long, aes(x = FJ_outcome, y = FJ_resp)) +
-#   geom_hline(yintercept = 50, linetype = 3) +
-#   geom_violin(aes(fill = condition),
-#     colour = "black",
-#     linewidth = 0.5,
-#     position = dodge
-#   ) +
-#   stat_summary(
-#     fun.data = mean_cl_normal,
-#     geom = "pointrange",
-#     aes(group = condition),
-#     color = "black",
-#     size = 1.5,
-#     linewidth = 1,
-#     position = dodge
-#   ) +
-#   stat_summary(
-#     fun = median,
-#     geom = "crossbar",
-#     aes(group = condition),
-#     colour = "black",
-#     width = .5,
-#     position = dodge
-#   ) +
-#   geom_point(aes(shape = condition),
-#     size = 2.5,
-#     alpha = 0.2,
-#     position = position_jitterdodge(
-#       jitter.width = 0.1,
-#       dodge.width = .6
-#     )
-#   ) +
-#   facet_wrap(~FJ_context, scales = "free_x") +
-#   scale_fill_manual(values = brewer.pal(n = 8, name = "Dark2")) +
-# 
-#   # coord_cartesian(ylim = c(0, 1)) +
-#   xlab("") +
-#   ylab("Judged Percentage") +
-#   labs(
-#     fill = "Condition:",
-#     shape = "Condition:"
-#   ) +
-#   theme_custom() +
-#   theme(
-#     legend.position = "bottom",
-#     legend.box.background = element_rect(colour = "white")
-#   )
-# 
-# # Save Plot
-# ggsave("Plots/plt_fj_violin.png",
-#   plot = plt_fj_violin,
-#   units = "in", width = 16, height = 9,
-#   dpi = 500
-# )
-# 
-# ggsave("Plots/plt_fj_violin.svg",
-#   plot = plt_fj_violin,
-#   units = "in", width = 16, height = 9
-# )

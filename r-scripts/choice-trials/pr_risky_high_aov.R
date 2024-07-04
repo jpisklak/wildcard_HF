@@ -5,8 +5,6 @@
 # source("r-scripts/choice-trials/risk_pref_filter.R")
 #-------------------------------------------------------------------------------
 
-# Note: Pre-registration called for 3 separate one-way ANOVAs (not a 2x3 mixed)
-
 # One-Way ANOVA on High Value selection
 #-------------------------------------------------------------------------------
 # Subset High Value
@@ -14,8 +12,8 @@ hv <- risky_res %>%
   filter(block == 7 & risky_choice == "High")
 
 # Set Contrasts
-E1_v_NE <- c(1, 0, 0)
-E2_v_NE <- c(0, 1, 0)
+E1_v_NE <- c(0, 1, 0)
+E2_v_NE <- c(0, 0, 1)
 contrasts(hv$condition) <- cbind(E1_v_NE, E2_v_NE)
 
 # Model
