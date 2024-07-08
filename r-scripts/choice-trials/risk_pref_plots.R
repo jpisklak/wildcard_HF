@@ -44,7 +44,7 @@ plt_risky_blk <- ggplot(risky_res, aes(
   scale_colour_manual(values = c("#ff6961", "#77dd77")) +
   scale_fill_manual(values = c("#ff6961", "#77dd77")) +
   scale_shape_manual(values = 21:23) +
-  coord_cartesian(ylim = c(0, 0.7)) +
+  coord_cartesian(ylim = c(0, 0.8)) +
   xlab("Block") +
   ylab("p(Risky)") +
   labs(shape = "Choice Value:",
