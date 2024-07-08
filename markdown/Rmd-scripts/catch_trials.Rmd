@@ -8,7 +8,7 @@
 <br>
   
 ```{r, out.width = '100%', out.height = '100%'}
-source('r-scripts/choice-trials/catch_trials.R')
+source('r-scripts/choice-trials/catch_plot.R')
 include_graphics(
   file.path(main_dir, "plots/choice-trials/catch_results.svg")
 )
