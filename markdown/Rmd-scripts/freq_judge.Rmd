@@ -1,20 +1,3 @@
-<!-- Complications -->
-
-<details>
-  <summary>
-  Complications
-  </summary>
-
-<br>
-
-It seems debatable whether the frequency judgement data should be plotted and analysed using means.  The data is almost certainly *qualitative* in nature.  For example, there is no reason to assume one person's judgment of 50% is the same as another person's. One person's 50% might be another's 70%. It is worth remembering **each participant is not providing a objectively measurable frequency, they are giving their opinion about what they believe real frequency is (i.e., it is subjective not objective).**
-
-While the frequency judgement data has been plotted and analysed with means to remain consistent with the prior extreme-outcome work, there is a good argument that this data should be treated as nominal - similar to the first-outcome results (some might wonder why the two are being treated differently).  Admittedly, many (in Psychology) would probably argue this data is "sufficiently" quantitative given its wide sample space. Others might argue that it is qualitative, but ordinal (not nominal) and a Kruskal–Wallis test should be used.
-
-<br>
-
-</details>
-
 <!-- Plot -->
 
 <details>
