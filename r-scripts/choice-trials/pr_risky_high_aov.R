@@ -38,16 +38,14 @@ anova_hv$pseudo_R2 <- c(
 
 # Planned Contrasts Results
 pc_hv <- as.data.frame(summary(hv_mod)$tTable)
-
-# Adjust p-value for one-sided test
-pc_hv$`p-value` <- pc_hv$`p-value` / 2
-
 pc_hv$sig <- ifelse(pc_hv$`p-value` < .05, TRUE, FALSE)
 pc_hv$DF <- df_resid
 pc_hv$r_effect <- sqrt((pc_hv$`t-value`^2) / (pc_hv$`t-value`^2 + pc_hv$DF))
 
 # Test of equality between E2 and NE
-E2_v_NE <- filter(hv, condition %in% c("Extreme Last", "No Extreme")) %>% 
+NE_v_E2 <- hv %>% 
+  filter(condition %in% c("Extreme Last", "No Extreme")) %>% 
   droplevels()
-welch_E2_v_NE <- t.test(cp ~ condition, data = E2_v_NE, var.equal = FALSE)
-d_E2_v_NE <- cohen.d(cp ~ condition, data = E2_v_NE)
+
+welch_NE_v_E2 <- t.test(cp ~ condition, data = NE_v_E2, var.equal = FALSE)
+d_NE_v_E2 <- cohen.d(cp ~ condition, data = NE_v_E2)

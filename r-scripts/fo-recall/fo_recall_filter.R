@@ -47,28 +47,5 @@ fo <- fo %>%
 # Proportion results
 props <- fo %>%
   group_by(FO_context, condition) %>%
-  count(FO_cat)
-
-
-totals <- props %>%
-  group_by(FO_context, condition) %>%
-  summarise(
-    total = sum(n)
-  )
-
-props <- merge(props, totals,
-  by = c("FO_context", "condition"),
-  all.x = TRUE
-)
-
-props$prop <- props$n / props$total
-
-
-# Reorder context levels
-props$FO_context <- factor(props$FO_context,
-  levels = c(
-    "Low",
-    "High"
-  )
-)
-
+  count(FO_cat) %>% 
+  mutate(prop = n / sum(n))

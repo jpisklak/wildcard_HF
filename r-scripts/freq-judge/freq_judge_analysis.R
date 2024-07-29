@@ -57,13 +57,6 @@ int_mod <- lme(FJ_resp ~ condition + FJ_context + condition:FJ_context,
 aov_2x3 <- data.frame(anova(base, cond_mod, HL_mod, int_mod))
 aov_2x3 <- aov_2x3[, 2:ncol(aov_2x3)]
 
-# Nagelkerke (Cragg and Uhler) Pseudo R-squared
-# cond_R2 <- nagelkerke(cond_mod, null = base)$Pseudo.R.squared.for.model.vs.null[3]
-# HL_R2 <- nagelkerke(HL_mod, null = cond_mod)$Pseudo.R.squared.for.model.vs.null[3]
-# int_R2 <- nagelkerke(int_mod, null = HL_mod)$Pseudo.R.squared.for.model.vs.null[3]
-# 
-# aov_2x3$pseudo_R2 <- c(NA, cond_R2, HL_R2, int_R2)
-
 # Inverse Bayes Factor
 delta_BIC <- aov_2x3$BIC[2:nrow(aov_2x3)] - aov_2x3$BIC[1:(nrow(aov_2x3) - 1)]
 BF01 <- exp(delta_BIC / 2)
@@ -72,9 +65,20 @@ aov_2x3$BF_10 <- c(NA, BF10)
 
 # Planned comparisons
 pc <- as.data.frame(summary(int_mod)$tTable)
+
+# Adjust p-value for one-sided test as per pre-registration 
+  # (interactions and intercept not adjusted)
+pc$`p-value`[2:3] <- pc$`p-value`[2:3] / 2
+
 pc$r_effect <- sqrt((pc$`t-value`^2) / (pc$`t-value`^2 + pc$DF))
 
+# Test of equality between E2 and NE
+NE_v_E2 <- fj_long %>% 
+  filter(condition %in% c("Extreme Last", "No Extreme")) %>% 
+  droplevels()
 
+welch_NE_v_E2 <- t.test(FJ_resp ~ condition, data = NE_v_E2, var.equal = FALSE)
+d_NE_v_E2 <- cohen.d(FJ_resp ~ condition, data = NE_v_E2)
 
 
 

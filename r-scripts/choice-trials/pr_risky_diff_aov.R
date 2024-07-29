@@ -39,7 +39,7 @@ anova_diff$pseudo_R2 <- c(
 # Planned Contrasts Results
 pc_diff <- as.data.frame(summary(diff_mod)$tTable)
 
-# Adjust p-value for one-sided test
+# Adjust p-value for one-sided test as per pre-registration
 pc_diff$`p-value` <- pc_diff$`p-value` / 2
 
 pc_diff$sig <- ifelse(pc_diff$`p-value` < .05, TRUE, FALSE)
@@ -48,9 +48,11 @@ pc_diff$r_effect <- sqrt((pc_diff$`t-value`^2) /
   (pc_diff$`t-value`^2 + pc_diff$DF))
 
 # Test of equality between E2 and NE
-E2_v_NE <- filter(diffs_b7, condition %in% c("Extreme Last", "No Extreme")) %>% 
+NE_v_E2 <- diffs_b7 %>% 
+  filter(condition %in% c("Extreme Last", "No Extreme")) %>% 
   droplevels()
-welch_E2_v_NE <- t.test(diff ~ condition, data = E2_v_NE, var.equal = FALSE)
-d_E2_v_NE <- cohen.d(diff ~ condition, data = E2_v_NE)
+
+welch_NE_v_E2 <- t.test(diff ~ condition, data = NE_v_E2, var.equal = FALSE)
+d_NE_v_E2 <- cohen.d(diff ~ condition, data = NE_v_E2)
 
 

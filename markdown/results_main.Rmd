@@ -71,6 +71,47 @@ source("r-scripts/prelim_code.R")
 
 <br>
 
+<!-- Contingencies -->
+
+<details>
+  <summary>
+  Contingencies
+  </summary>
+  
+<br>
+
+<h5>Low Value Options</h5>
+- Fixed: 30
+- Risky: 20 or 40
+
+<h5>High Value Options</h5>
+- Fixed: 70
+- Risky: 60 or 80
+- WC-Extreme: 5 or 95
+- WC-NonExtreme: 45 or 55
+
+<h5>Group 1 - Extreme First</h5>
+- Block 1-3: WC-Extreme
+- Block 4-6: WC-NonExtreme
+- Block 7: No WC or feedback
+
+<h5>Group 2 - Extreme Last</h5>
+- Block 1-3: WC-NonExtreme
+- Block 4-6: WC-Extreme
+- Block 7: No WC or feedback
+
+<h5>Group 3 - No Extreme</h5>
+- Block 1-3: WC-NonExtreme
+- Block 4-6: WC-NonExtreme
+- Block 7: No WC or feedback
+
+<br>
+
+  </details>
+
+
+<br>
+
 ---
 
 <br>
@@ -139,13 +180,13 @@ source("r-scripts/prelim_code.R")
 
 `r R.version$version.string`
 
-- effsize (`r packageVersion('effsize')`) [@effsize]
 - Hmisc (`r packageVersion('Hmisc')`) [@Hmisc]
-- ggh4x (`r packageVersion('nlme')`) [@ggh4x]
-- nlme (`r packageVersion('nlme')`) [@nlme]
-- patchwork (`r packageVersion('patchwork')`) [@patchwork]
-- RColorBrewer (`r packageVersion('RColorBrewer')`) [@RColorBrewer]
 - rcompanion (`r packageVersion('rcompanion')`) [@rcompanion]
+- RColorBrewer (`r packageVersion('RColorBrewer')`) [@RColorBrewer]
+- patchwork (`r packageVersion('patchwork')`) [@patchwork]
+- nlme (`r packageVersion('nlme')`) [@nlme]
+- effsize (`r packageVersion('effsize')`) [@effsize]
+- ggh4x (`r packageVersion('nlme')`) [@ggh4x]
 - tidyverse (`r packageVersion('tidyverse')`) [@tidyverse]
 
 <br>

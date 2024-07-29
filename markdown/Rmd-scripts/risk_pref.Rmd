@@ -121,17 +121,17 @@ $b = `r b_vals[2]`, t(`r df_vals[2]`) = `r t_stat[2]`, p = `r p_vals[2]`, r = `r
 
 $b = `r b_vals[3]`, t(`r df_vals[3]`) = `r t_stat[3]`, p = `r p_vals[3]`, r = `r r_vals[3]`$
 
-- Note: p-values for planned contrasts reflect a one-sided hypothesis test as per the pre-registered hypotheses.
+- Note: p-values for these two planned contrasts reflect a one-sided hypothesis test as per the pre-registered hypotheses. i.e., (G1 < G2) & (G1 < G3). The Welch t-test below tests whether G2 = G3.
 
 <br>
 
 <h4> Welch Two-Sided T-test </h4>
 
 ```{r}
-t_stat <- round(welch_E2_v_NE$statistic, 2)
-df <- round(welch_E2_v_NE$parameter, 2)
-p_val <- round(welch_E2_v_NE$p.value, 3)
-d_val <- round(d_E2_v_NE$estimate, 2)
+t_stat <- round(welch_NE_v_E2$statistic, 2)
+df <- round(welch_NE_v_E2$parameter, 2)
+p_val <- round(welch_NE_v_E2$p.value, 3)
+d_val <- round(d_NE_v_E2$estimate, 2)
 ```
 
 **No Extreme vs. Extreme Last:**
@@ -198,17 +198,17 @@ $b = `r b_vals[2]`, t(`r df_vals[2]`) = `r t_stat[2]`, p = `r p_vals[2]`, r = `r
 
 $b = `r b_vals[3]`, t(`r df_vals[3]`) = `r t_stat[3]`, p = `r p_vals[3]`, r = `r r_vals[3]`$
 
-- Note: p-values for planned contrasts reflect a one-sided hypothesis test as per the pre-registered hypotheses.
+- Note: These are two-sided tests.
 
 <br>
 
 <h4> Welch Two-Sided T-test </h4>
 
 ```{r}
-t_stat <- round(welch_E2_v_NE$statistic, 2)
-df <- round(welch_E2_v_NE$parameter, 2)
-p_val <- round(welch_E2_v_NE$p.value, 3)
-d_val <- round(d_E2_v_NE$estimate, 2)
+t_stat <- round(welch_NE_v_E2$statistic, 2)
+df <- round(welch_NE_v_E2$parameter, 2)
+p_val <- round(welch_NE_v_E2$p.value, 3)
+d_val <- round(d_NE_v_E2$estimate, 2)
 ```
 
 **No Extreme vs. Extreme Last:**
@@ -276,17 +276,17 @@ $b = `r b_vals[2]`, t(`r df_vals[2]`) = `r t_stat[2]`, p = `r p_vals[2]`, r = `r
 
 $b = `r b_vals[3]`, t(`r df_vals[3]`) = `r t_stat[3]`, p = `r p_vals[3]`, r = `r r_vals[3]`$
 
-- Note: p-values for planned contrasts reflect a one-sided hypothesis test as per the pre-registered hypotheses.
+- Note: These are two-sided tests.
 
 <br>
 
 <h4> Welch Two-Sided T-test </h4>
 
 ```{r}
-t_stat <- round(welch_E2_v_NE$statistic, 2)
-df <- round(welch_E2_v_NE$parameter, 2)
-p_val <- round(welch_E2_v_NE$p.value, 3)
-d_val <- round(d_E2_v_NE$estimate, 2)
+t_stat <- round(welch_NE_v_E2$statistic, 2)
+df <- round(welch_NE_v_E2$parameter, 2)
+p_val <- round(welch_NE_v_E2$p.value, 3)
+d_val <- round(d_NE_v_E2$estimate, 2)
 ```
 
 **No Extreme vs. Extreme Last:**

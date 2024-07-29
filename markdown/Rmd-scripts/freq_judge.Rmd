@@ -114,6 +114,23 @@ $b = `r b_vals[5]`$, $t(`r df_vals[5]`) = `r t_stat[5]`$, $p = `r p_vals[5]`$, $
 
 $b = `r b_vals[6]`$, $t(`r df_vals[6]`) = `r t_stat[6]`$, $p = `r p_vals[6]`$, $r = `r r_vals[6]`$
 
+- IMPORTANT: p-values were adjusted for a one-sided hypothesis only for the first two planned contrasts. Since the interaction had no predicted direction, they were left as two-sided.
+
+<br>
+
+<h4> Welch Two-Sided T-test </h4>
+
+```{r}
+t_stat <- round(welch_NE_v_E2$statistic, 2)
+df <- round(welch_NE_v_E2$parameter, 2)
+p_val <- round(welch_NE_v_E2$p.value, 3)
+d_val <- round(d_NE_v_E2$estimate, 2)
+```
+
+**No Extreme vs. Extreme Last:**
+
+$t(`r df`) = `r t_stat`$, $p = `r p_val`$, $d = `r d_val`$
+
 <br>
 
 </details>
