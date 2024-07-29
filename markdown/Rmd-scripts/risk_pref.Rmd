@@ -113,22 +113,30 @@ p_vals <- ifelse(pc_diff$`p-value` < 0.001,
 r_vals <- round(pc_diff$r_effect, 3)
 ```
 
-**Extreme First vs. No Extreme:**
+**No Extreme vs. Extreme First:**
 
 $b = `r b_vals[2]`, t(`r df_vals[2]`) = `r t_stat[2]`, p = `r p_vals[2]`, r = `r r_vals[2]`$
 
-**Extreme Last vs. No Extreme:**
+**Extreme Last vs. Extreme First:**
 
 $b = `r b_vals[3]`, t(`r df_vals[3]`) = `r t_stat[3]`, p = `r p_vals[3]`, r = `r r_vals[3]`$
 
+- Note: p-values for planned contrasts reflect a one-sided hypothesis test as per the pre-registered hypotheses.
+
 <br>
 
-<h4> Post-Hoc Pairwise Comparisons </h4>
+<h4> Welch Two-Sided T-test </h4>
 
 ```{r}
-kable(ph_diff, 'html', digits = 3) %>%
-  kable_classic(full_width = T, position = "center", html_font = "Arial")
+t_stat <- round(welch_E2_v_NE$statistic, 2)
+df <- round(welch_E2_v_NE$parameter, 2)
+p_val <- round(welch_E2_v_NE$p.value, 3)
+d_val <- round(d_E2_v_NE$estimate, 2)
 ```
+
+**No Extreme vs. Extreme Last:**
+
+$t(`r df`) = `r t_stat`$, $p = `r p_val`$, $d = `r d_val`$
 
 <br>
 
@@ -182,22 +190,30 @@ p_vals <- ifelse(pc_hv$`p-value` < 0.001,
 r_vals <- round(pc_hv$r_effect, 3)
 ```
 
-**Extreme First vs. No Extreme:**
+**No Extreme vs. Extreme First:**
 
 $b = `r b_vals[2]`, t(`r df_vals[2]`) = `r t_stat[2]`, p = `r p_vals[2]`, r = `r r_vals[2]`$
 
-**Extreme Last vs. No Extreme:**
+**Extreme Last vs. Extreme First:**
 
 $b = `r b_vals[3]`, t(`r df_vals[3]`) = `r t_stat[3]`, p = `r p_vals[3]`, r = `r r_vals[3]`$
 
+- Note: p-values for planned contrasts reflect a one-sided hypothesis test as per the pre-registered hypotheses.
+
 <br>
 
-<h4> Post-Hoc Pairwise Comparisons </h4>
+<h4> Welch Two-Sided T-test </h4>
 
 ```{r}
-kable(ph_hv, 'html', digits = 3) %>%
-  kable_classic(full_width = T, position = "center", html_font = "Arial")
+t_stat <- round(welch_E2_v_NE$statistic, 2)
+df <- round(welch_E2_v_NE$parameter, 2)
+p_val <- round(welch_E2_v_NE$p.value, 3)
+d_val <- round(d_E2_v_NE$estimate, 2)
 ```
+
+**No Extreme vs. Extreme Last:**
+
+$t(`r df`) = `r t_stat`$, $p = `r p_val`$, $d = `r d_val`$
 
 <br>
 
@@ -252,22 +268,30 @@ p_vals <- ifelse(pc_lv$`p-value` < 0.001,
 r_vals <- round(pc_lv$r_effect, 3)
 ```
 
-**Extreme First vs. No Extreme:**
+**No Extreme vs. Extreme First:**
 
 $b = `r b_vals[2]`, t(`r df_vals[2]`) = `r t_stat[2]`, p = `r p_vals[2]`, r = `r r_vals[2]`$
 
-**Extreme Last vs. No Extreme:**
+**Extreme Last vs. Extreme First:**
 
 $b = `r b_vals[3]`, t(`r df_vals[3]`) = `r t_stat[3]`, p = `r p_vals[3]`, r = `r r_vals[3]`$
 
+- Note: p-values for planned contrasts reflect a one-sided hypothesis test as per the pre-registered hypotheses.
+
 <br>
 
-<h4> Post-Hoc Pairwise Comparisons </h4>
+<h4> Welch Two-Sided T-test </h4>
 
 ```{r}
-kable(ph_lv, 'html', digits = 3) %>%
-  kable_classic(full_width = T, position = "center", html_font = "Arial")
+t_stat <- round(welch_E2_v_NE$statistic, 2)
+df <- round(welch_E2_v_NE$parameter, 2)
+p_val <- round(welch_E2_v_NE$p.value, 3)
+d_val <- round(d_E2_v_NE$estimate, 2)
 ```
+
+**No Extreme vs. Extreme Last:**
+
+$t(`r df`) = `r t_stat`$, $p = `r p_val`$, $d = `r d_val`$
 
 <br>
 
@@ -285,10 +309,6 @@ kable(ph_lv, 'html', digits = 3) %>%
 - ANOVAs were run using generalized least-squares fit by maximum likelihood.
 
 - $R^2_N$ is Nagelkerke's (also known as Cragg and Uhler's) pseudo $R^2$ [@Nagelkerke]. It isn't interpreted in exactly the same way as a $R^2$ based on ordinary least-squares regression, but it is bounded by 0 and 1 and higher values indicate a better model fit.
-
-- $\hat{\Psi}$ is the difference between condition means.
-- The post-hoc tests don't assume equal variance, but do assume normality.
-- The Hochberg correction [@hochberg1988] was applied to protect family-wise error rate, but others like Holm's or Benjamini & Hochberg's could be used instead.
 
 </details>
 

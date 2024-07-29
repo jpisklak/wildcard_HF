@@ -72,7 +72,7 @@ BF_vals <-
 
 $\chi^2(`r df_diffs[2]`) = `r l_rats[2]`$, $p = `r p_vals[2]`$, $BF_{10} = `r BF_vals[2]`$
 
-**Main Effect of Context / Value (high vs. low):**
+**Main Effect of Value (High vs. Low):**
 
 $\chi^2(`r df_diffs[3]`) = `r l_rats[3]`$, $p `r p_vals[3]`$, $BF_{10} `r BF_vals[3]`$
 
@@ -98,19 +98,19 @@ p_vals <- ifelse(pc$`p-value` < 0.001,
 r_vals <- round(pc$r_effect, 3)
 ```
 
-**Extreme First vs. No Extreme:**
+**No Extreme vs. Extreme First:**
 
 $b = `r b_vals[2]`$, $t(`r df_vals[2]`) = `r t_stat[2]`$, $p = `r p_vals[2]`$, $r = `r r_vals[2]`$
 
-**Extreme Last vs. No Extreme:**
+**Extreme Last vs. Extreme First:**
 
 $b = `r b_vals[3]`$, $t(`r df_vals[3]`) = `r t_stat[3]`$, $p = `r p_vals[3]`$, $r = `r r_vals[3]`$
 
-**Extreme First vs. No Extreme | Context (High vs. Low):**
+**No Extreme vs. Extreme First | Value (High vs. Low):**
 
 $b = `r b_vals[5]`$, $t(`r df_vals[5]`) = `r t_stat[5]`$, $p = `r p_vals[5]`$, $r = `r r_vals[5]`$
 
-**Extreme Last vs. No Extreme | Context (High vs. Low):**
+**Extreme Last vs. Extreme First | Value (High vs. Low):**
 
 $b = `r b_vals[6]`$, $t(`r df_vals[6]`) = `r t_stat[6]`$, $p = `r p_vals[6]`$, $r = `r r_vals[6]`$
 
@@ -124,6 +124,8 @@ $b = `r b_vals[6]`$, $t(`r df_vals[6]`) = `r t_stat[6]`$, $p = `r p_vals[6]`$, $
   <summary>
   Notes
   </summary>
+
+- ANOVA was conducted only on judgements for the risky extreme values (+20 and +80).
 
 - NE = No Extreme; E1 = Extreme First; E2 = Extreme Last
 

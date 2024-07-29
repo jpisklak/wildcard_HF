@@ -12,9 +12,9 @@ hv <- risky_res %>%
   filter(block == 7 & risky_choice == "High")
 
 # Set Contrasts
-E1_v_NE <- c(0, 1, 0)
-E2_v_NE <- c(0, 0, 1)
-contrasts(hv$condition) <- cbind(E1_v_NE, E2_v_NE)
+NE_v_E1 <- c(1, 0, 0)
+E2_v_E1 <- c(0, 0, 1)
+contrasts(hv$condition) <- cbind(NE_v_E1, E2_v_E1)
 
 # Model
 hv_mod <- gls(cp ~ condition, data = hv, method = "ML")
@@ -38,20 +38,16 @@ anova_hv$pseudo_R2 <- c(
 
 # Planned Contrasts Results
 pc_hv <- as.data.frame(summary(hv_mod)$tTable)
+
+# Adjust p-value for one-sided test
+pc_hv$`p-value` <- pc_hv$`p-value` / 2
+
 pc_hv$sig <- ifelse(pc_hv$`p-value` < .05, TRUE, FALSE)
 pc_hv$DF <- df_resid
 pc_hv$r_effect <- sqrt((pc_hv$`t-value`^2) / (pc_hv$`t-value`^2 + pc_hv$DF))
 
-# Post-hoc comparisons for heteroscedastic means
-# Assumes Normality
-ph_hv <- lincon(cp ~ condition,
-  data = hv,
-  tr = 0,
-  method = "hochberg"
-)$comp[, 3:6]
-rownames(ph_hv) <- c(
-  paste(levels(hv$condition)[1], levels(hv$condition)[2], sep = "-"),
-  paste(levels(hv$condition)[1], levels(hv$condition)[3], sep = "-"),
-  paste(levels(hv$condition)[2], levels(hv$condition)[3], sep = "-")
-)
-
+# Test of equality between E2 and NE
+E2_v_NE <- filter(hv, condition %in% c("Extreme Last", "No Extreme")) %>% 
+  droplevels()
+welch_E2_v_NE <- t.test(cp ~ condition, data = E2_v_NE, var.equal = FALSE)
+d_E2_v_NE <- cohen.d(cp ~ condition, data = E2_v_NE)

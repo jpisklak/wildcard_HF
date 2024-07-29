@@ -5,14 +5,20 @@
 # source("r-scripts/fo-recall/fo_recall_filter.R")
 #-------------------------------------------------------------------------------
 
-# Create category column for results
-fo <- fo %>%
-  mutate(FO_eval = case_when(
-    FO_stim == "LR" & FO_resp == 20 ~ "Yes",
-    FO_stim == "HR" & FO_resp == 80 ~ "Yes",
-    FO_stim == "LR" & FO_resp != 20 ~ "No",
-    FO_stim == "HR" & FO_resp != 80 ~ "No",
-  ))
+# # Remove anyone who gave a "other/incorrect" response.
+# other <- fo %>% filter(FO_cat == "Other")
+# n_other <- length(unique(other$ID))
+# fo <- fo %>% filter(!(ID %in% other$ID ))
+# n_fo <- length(unique(fo$ID))
+# 
+# # Create category column for results
+# fo <- fo %>%
+#   mutate(FO_eval = case_when(
+#     FO_stim == "LR" & FO_resp == 20 ~ "Yes",
+#     FO_stim == "HR" & FO_resp == 80 ~ "Yes",
+#     FO_stim == "LR" & FO_resp != 20 ~ "No",
+#     FO_stim == "HR" & FO_resp != 80 ~ "No",
+#   ))
 
 # 2 X 3 Pearson’s Chi-squared Test
 #-------------------------------------------------------------------------------

@@ -1,9 +1,15 @@
 # Run the following 4 lines to execute this script independently
-# setwd('..') # assumes working dir is ./r-scripts/fo-recall
+# setwd('../..') # assumes working dir is ./r-scripts/fo-recall
 # source("r-scripts/prelim_code.R")
 # source("r-scripts/subj_stats.R")
 # source("r-scripts/fo-recall/fo_recall_filter.R")
 #-------------------------------------------------------------------------------
+
+# Remove anyone who gave a "other/incorrect" response.
+other <- fo %>% filter(FO_cat == "Other")
+n_other <- length(unique(other$ID))
+fo <- fo %>% filter(!(ID %in% other$ID ))
+n_fo <- length(unique(fo$ID))
 
 # Create category column for results
 fo <- fo %>%

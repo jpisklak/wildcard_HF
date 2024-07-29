@@ -139,6 +139,7 @@ source("r-scripts/prelim_code.R")
 
 `r R.version$version.string`
 
+- effsize (`r packageVersion('effsize')`) [@effsize]
 - Hmisc (`r packageVersion('Hmisc')`) [@Hmisc]
 - ggh4x (`r packageVersion('nlme')`) [@ggh4x]
 - nlme (`r packageVersion('nlme')`) [@nlme]
@@ -146,7 +147,6 @@ source("r-scripts/prelim_code.R")
 - RColorBrewer (`r packageVersion('RColorBrewer')`) [@RColorBrewer]
 - rcompanion (`r packageVersion('rcompanion')`) [@rcompanion]
 - tidyverse (`r packageVersion('tidyverse')`) [@tidyverse]
-- WRS2 (`r packageVersion('WRS2')`) [@WRS2]
 
 <br>
 

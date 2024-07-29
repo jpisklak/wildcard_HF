@@ -11,9 +11,9 @@
 # diffs_b7
 
 # Set Contrasts
-E1_v_NE <- c(0, 1, 0)
-E2_v_NE <- c(0, 0, 1)
-contrasts(diffs_b7$condition) <- cbind(E1_v_NE, E2_v_NE)
+NE_v_E1 <- c(1, 0, 0)
+E2_v_E1 <- c(0, 0, 1)
+contrasts(diffs_b7$condition) <- cbind(NE_v_E1, E2_v_E1)
 
 # Model
 diff_mod <- gls(diff ~ condition, data = diffs_b7, method = "ML")
@@ -38,20 +38,19 @@ anova_diff$pseudo_R2 <- c(
 
 # Planned Contrasts Results
 pc_diff <- as.data.frame(summary(diff_mod)$tTable)
+
+# Adjust p-value for one-sided test
+pc_diff$`p-value` <- pc_diff$`p-value` / 2
+
 pc_diff$sig <- ifelse(pc_diff$`p-value` < .05, TRUE, FALSE)
 pc_diff$DF <- df_resid
 pc_diff$r_effect <- sqrt((pc_diff$`t-value`^2) /
   (pc_diff$`t-value`^2 + pc_diff$DF))
 
-# Post-hoc comparisons for heteroscedastic means
-# Assumes Normality
-ph_diff <- lincon(diff ~ condition,
-  data = diffs_b7,
-  tr = 0,
-  method = "hochberg"
-)$comp[, 3:6]
-rownames(ph_diff) <- c(
-  paste(levels(diffs_b7$condition)[1], levels(diffs_b7$condition)[2], sep = "-"),
-  paste(levels(diffs_b7$condition)[1], levels(diffs_b7$condition)[3], sep = "-"),
-  paste(levels(diffs_b7$condition)[2], levels(diffs_b7$condition)[3], sep = "-")
-)
+# Test of equality between E2 and NE
+E2_v_NE <- filter(diffs_b7, condition %in% c("Extreme Last", "No Extreme")) %>% 
+  droplevels()
+welch_E2_v_NE <- t.test(diff ~ condition, data = E2_v_NE, var.equal = FALSE)
+d_E2_v_NE <- cohen.d(diff ~ condition, data = E2_v_NE)
+
+

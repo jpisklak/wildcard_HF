@@ -140,9 +140,9 @@ kable(g1_tab, 'html') %>%
 
 $\chi^2(`r df[1]`) = `r chi[1]`, p = `r p[1]`$
 
-- There is no significant change in judgement evaluation between the high and low risky doors.
+- There is a significant change in judgement evaluation between the high and low risky doors.
 
-- The odds of getting the judgement correct given they are seeing the high-risk door is `r OR[1]` times that of seeing the low-risk door and getting it wrong.
+- The odds of stating the extreme value given they are seeing the high-risk door is `r OR[1]` times that of seeing the low-risk door and getting it wrong.
 
 <br>
 
@@ -159,7 +159,7 @@ $\chi^2(`r df[2]`) = `r chi[2]`, p = `r p[2]`$
 
 - There is a significant change in judgement evaluation between the high and low risky doors.
 
-- The odds of getting the judgement correct given they are seeing the high-risk door is `r OR[2]` times that of seeing the low-risk door and getting it wrong.
+- The odds of stating the extreme value given they are seeing the high-risk door is `r OR[2]` times that of seeing the low-risk door and getting it wrong.
 
 <br>
 
@@ -176,7 +176,7 @@ $\chi^2(`r df[3]`) = `r chi[3]`, p = `r p[3]`$
 
 - There is a significant change in judgement evaluation between the high and low risky doors.
 
-- The odds of getting the judgement correct given they are seeing the high-risk door is `r OR[3]` times that of seeing the low-risk door and getting it wrong.
+- The odds of stating the extreme value given they are seeing the high-risk door is `r OR[3]` times that of seeing the low-risk door and getting it wrong.
 
 <br>
 
@@ -211,7 +211,7 @@ kable(fo_high_tab, 'html', caption = 'High Value Contingency Table') %>%
 
 $\chi^2(`r df[1]`) = `r chi[1]`, p = `r p[1]`, \varphi_c = `r v[1]`$
 
-- Cannot rule out that condition is independent of recalling the extreme value.
+- Cannot rule out that recalling the extreme value is independent of condition.
 
 
 ```{r}
@@ -230,9 +230,7 @@ kable(p_high, 'html', caption = 'p-values', digits = 3) %>%
 <br>
 <br>
 
-Only the *Extreme 1st* condition differs significantly from the expected value. The *Extreme 1st* condition tends to not recall the extreme value.
-
-- Extreme 1st: $z = `r round(std_res_high[4], 2)`, p = `r round(p_high[4], 3)`$
+None of the three conditions differ significantly from the expected value.
 
 <br>
 
@@ -248,7 +246,7 @@ kable(fo_low_tab, 'html', caption = 'Low Value Contingency Table') %>%
 
 $\chi^2(`r df[2]`) = `r chi[2]`, p = `r p[2]`, \varphi_c = `r v[2]`$
 
-- Condition is not independent of recalling the extreme value; however, the association/effect is a weak/small one.
+- Recalling the extreme value is dependent on condition; however, the association/effect is a weak/small one.
 
 
 ```{r}
@@ -267,11 +265,11 @@ kable(p_low, 'html', caption = 'p-values', digits = 3) %>%
 <br>
 <br>
 
-The *Extreme 1st* and *No Extreme* conditions both differ significantly from the expected value. *Extreme 1st* tends to not recall the extreme value, whereas the *No Extreme* does.
+The *No Extreme* and *Extreme 1st* conditions both differ significantly from the expected value. The *No Extreme* condition tends to recall the extreme value, whereas *Extreme 1st* does not.
 
-- Extreme 1st: $z = `r round(std_res_low[4], 2)`, p = `r round(p_low[4], 3)`$
+- No Extreme: $z = `r round(std_res_low[4], 2)`, p = `r round(p_low[4], 3)`$
 
-- No Extreme: $z = `r round(std_res_low[6], 2)`, p = `r round(p_low[6], 3)`$
+- Extreme 1st: $z = `r round(std_res_low[5], 2)`, p = `r round(p_low[5], 3)`$
 
 <br>
 <br>
@@ -280,9 +278,13 @@ Note:
 
 - In the contingency tables, 'Yes' indicates the extreme value was recalled, 'No' indicates that it was not.
 
+- Only recalled outcomes that matched the programmed values were included. i.e., if they saw the *High Value Risky Door*, 80 was logged as "Yes" and 60 was logged as "No." If they saw the *Low Value Risky Door*, 20 was logged as "Yes", 40 was logged as "No". Participants who responded with any "other" values were removed from the analysis. Only Risky doors were evaluated. 
+
+- In total, removing "other" responses resulted `r n_other` participants being excluded from these analyses leaving a final N = `r n_fo`.
+
 - $\varphi_c$ is Cramér’s V, a measure of association for two nominal variables (i.e., an effect size of sorts). It can take a value between 0 and 1, with 0 indicating no association (i.e., full independence). 
 
-- Post-hoc analysis was conducted by evaluating the standardized residuals from the chi-square analysis because it seemed the most intuitive approach. However, another approach would be to conduct pairwise Pearson Chi-squared or Fisher Exact tests across the three conditions.
+- Post-hoc analysis on each $\chi^2$ test was conducted by evaluating the standardized residuals from the chi-square analysis because it seemed the most intuitive approach. However, another approach would be to conduct pairwise Pearson Chi-squared or Fisher Exact tests across the three conditions.
 
 
 <br>
