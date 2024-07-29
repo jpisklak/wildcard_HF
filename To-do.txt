@@ -1,1 +1,0 @@
-Check if pre-reg is one-sided for frequency judgement.
