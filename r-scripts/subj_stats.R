@@ -10,6 +10,13 @@ data <- read_csv("data/wc_full_data.csv",
   )
 )
 
+# Average bonus
+data |> 
+  filter(!is.na(money_tot) & trial_tot == 300) |> 
+  select(ID, money_tot) |> 
+  mutate_at(c("money_tot"), as.numeric) |> 
+  summarise(m = mean(money_tot))
+
 # Collect catch trials
 ctch <- data %>%
   filter(trial_type == "ctch" & trial_tot == 300) %>%

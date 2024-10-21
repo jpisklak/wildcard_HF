@@ -14,7 +14,7 @@ plt_fj_means <- ggplot(fj_long, aes(
   x = FJ_outcome, y = FJ_resp,
   fill = condition, group = condition
 )) +
-  geom_hline(yintercept = 50, linetype = 3) +
+  #geom_hline(yintercept = 50, linetype = 3) +
   geom_bar(
     stat = "summary", fun = mean,
     colour = "black",

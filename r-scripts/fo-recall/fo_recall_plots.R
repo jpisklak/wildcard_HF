@@ -9,7 +9,7 @@ props$FO_context <- factor(props$FO_context, levels = c("High", "Low"))
 
 # Plot
 plt_fo_prop <- ggplot(props, aes(x = FO_cat, y = prop, group = condition)) +
-  geom_hline(yintercept = 0.5, linetype = 3) +
+  #geom_hline(yintercept = 0.5, linetype = 3) +
   geom_bar(
     stat = "identity",
     aes(fill = condition),
