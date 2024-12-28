@@ -272,18 +272,6 @@ The *No Extreme* and *Extreme 1st* conditions both differ significantly from the
 - Extreme 1st: $z = `r round(std_res_low[5], 2)`, p = `r round(p_low[5], 3)`$
 
 <br>
-
-<h4>Post-Hoc Pairwise Fisher-Exact Tests</h4>
-
-```{r}
-kable(fish_tests, 'html', digits = 4) %>%
-  kable_classic(full_width = F, position = "left", html_font = "Arial")
-```
-
-<br>
-
-Recalling the extreme value was found to be dependent on condition ($p = `r round(fish_tests$p_value_adj[4], 3)`$) only when low value options in the No Extreme and Extreme First conditions are considered (Row 4 in the table). Everything else fails to reach significance.  
-
 <br>
 
 Note:
@@ -296,9 +284,7 @@ Note:
 
 - $\varphi_c$ is Cramér’s V, a measure of association for two nominal variables (i.e., an effect size of sorts). It can take a value between 0 and 1, with 0 indicating no association (i.e., full independence). 
 
-- Post-hoc analysis on each $\chi^2$ test was conducted by evaluating the standardized residuals from the chi-square analysis because it seemed the most intuitive approach. However, pairwise Pearson Chi-squared or Fisher Exact tests across the three conditions were also run. The `p_value_adj` column shows corrected p-values using the Holm-Bonferroni method.
-
-
+- Post-hoc analysis on each $\chi^2$ test was conducted by evaluating the standardized residuals from the chi-square analysis because it seemed the most intuitive approach. However, another approach would be to conduct pairwise Pearson Chi-squared or Fisher Exact tests across the three conditions.
 
 
 <br>
