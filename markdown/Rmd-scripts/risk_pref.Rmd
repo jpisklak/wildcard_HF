@@ -11,7 +11,7 @@
 source('r-scripts/choice-trials/risk_pref_filter.R')
 source('r-scripts/choice-trials/risk_pref_plots.R')
 include_graphics(
-  file.path(main_dir,"plots/choice-trials/plt_risky_blk.svg")
+  file.path(main_dir,"plots/choice-trials/plt_risky_blk.png")
 )
 ```
 
@@ -28,7 +28,7 @@ include_graphics(
   
 ```{r, out.width = '65%', out.height = '65%'}
 include_graphics(
-  file.path(main_dir, "plots/choice-trials/plt_risky_diff.svg")
+  file.path(main_dir, "plots/choice-trials/plt_risky_diff.png")
 )
 ```
 

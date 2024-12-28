@@ -12,7 +12,7 @@ source('r-scripts/freq-judge/freq_judge_filter.R')
 source('r-scripts/freq-judge/freq_judge_plot.R')
 
 include_graphics(
-  file.path(main_dir,"plots/freq-judge/plt_fj_means.svg")
+  file.path(main_dir,"plots/freq-judge/plt_fj_means.png")
 )
 ```
 

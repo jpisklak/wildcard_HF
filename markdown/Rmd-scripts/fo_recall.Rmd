@@ -62,7 +62,7 @@ source('r-scripts/fo-recall/fo_recall_filter.R')
 source('r-scripts/fo-recall/fo_recall_plots.R')
 
 include_graphics(
-  file.path(main_dir,"plots/fo-recall/plt_fo_prop.svg")
+  file.path(main_dir,"plots/fo-recall/plt_fo_prop.png")
 )
 ```
 
