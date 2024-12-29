@@ -282,7 +282,7 @@ kable(fish_tests, 'html', digits = 4) %>%
 
 <br>
 
-Recalling the extreme value was found to be dependent on condition ($p = `r round(fish_tests$p_value_adj[4], 3)`$) only when low value options in the No Extreme and Extreme First conditions are considered (Row 4 in the table). Everything else fails to reach significance.  
+- Recalling the extreme value was found to be dependent on condition ($p = `r round(fish_tests$p_value_adj[4], 3)`$) only when low value options in the No Extreme and Extreme First conditions are considered (Row 4 in the table). Everything else fails to reach significance.  
 
 <br>
 
