@@ -230,7 +230,7 @@ kable(p_high, 'html', caption = 'p-values', digits = 3) %>%
 <br>
 <br>
 
-None of the three conditions differ significantly from the expected value.
+- None of the three conditions differ significantly from the expected value.
 
 <br>
 
