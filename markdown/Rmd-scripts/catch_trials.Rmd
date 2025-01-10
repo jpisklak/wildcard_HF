@@ -7,7 +7,7 @@
   
 <br>
   
-```{r, out.width = '100%', out.height = '100%'}
+```{r, out.width = '60%'}
 source('r-scripts/choice-trials/catch_plot.R')
 include_graphics(
   file.path(main_dir, "plots/choice-trials/catch_results.png")

@@ -7,7 +7,7 @@
   
 <br>
   
-```{r, out.width = '100%', out.height = '100%'}
+```{r, out.width = '60%'}
 source('r-scripts/freq-judge/freq_judge_filter.R')
 source('r-scripts/freq-judge/freq_judge_plot.R')
 

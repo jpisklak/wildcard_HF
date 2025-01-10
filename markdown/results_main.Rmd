@@ -14,7 +14,6 @@ nocite: |
   @R
 ---
 
-<!-- https://www.w3schools.com/tags/tag_details.asp -->
 <style>
 details > summary {
   padding: 4px;

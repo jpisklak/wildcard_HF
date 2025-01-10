@@ -11,5 +11,3 @@ rmarkdown::render(
   output_file = paste0("wildcard-results-", Sys.Date(), ".html"),
   output_dir = output_dir
 )
-
- 

@@ -1,53 +1,3 @@
-<!-- Complications -->
-
-<details>
-  <summary>
-  Complications
-  </summary>
-
-<br>
-
-The pre-registration document states . . . 
-
-- *The first-outcome memory tests will be analyzed with a sequence of three McNemar Tests.* **<u>Each test will compare two of the groups and</u> the proportion reporting the extreme option for the high- and low-value option.** *The target prediction of the Encoding Hypothesis is that the proportion of extreme outcomes reported first will be reliably lower in the Extreme First group. Ideally, we would run one test with all three groups (like an overall ANOVA), but as of the time of writing this pre-registration, we have not been able to identify the appropriate variation of a chi-squared test that would work for this scenario.*
-  
-Based on this, it seems that the plan was to use McNemar Tests for condition comparisons, doing so three times to compare each pair of conditions (E1 vs EL, E1 vs NE, EL vs NE), while also factoring in counts/proportions for the 20th and 80th extremes. It is not clear that there is a way to do that with this test.  You can do one McNemar Test for each condition (which is what has been done below), but you cannot compare across conditions, like is stated in the pre-registration document.
-
-**Alternative to McNemar tests:**
-
-An alternative method to obtain a comparison across conditions could be to run two standard Pearson's Chi-squared tests using a 3 x 2 contingency table for the the High and Low choices respectively, like so...
-
-```{r}
-df_h <- data.frame(
-  `High Extreme` = c('a','c', 'e'),
-  Other = c('b','d','f')
-  )
-
-df_l <- data.frame(
-  `Low Extreme` = c('a','c', 'e'),
-  Other = c('b','d','f')
-  )
-
-rownames(df_h) <- c('Extreme First', 'Extreme Last', 'No Extreme')
-rownames(df_l) <- c('Extreme First', 'Extreme Last', 'No Extreme')
-
-kable(df_h, 'html') %>%
-  kable_classic(full_width = F, position = "left", html_font = "Arial")
-```
-
-<br>
-
-```{r}
-kable(df_l, 'html') %>%
-  kable_classic(full_width = F, position = "left", html_font = "Arial")
-```
-
-This would tell you whether reporting the extreme option varied according to condition, and then you could look at the standardized residuals to see where a difference is happening. Or you could do pairwise tests with appropriate p-value adjustments. 
-
-<br>
-
-</details>
-
 <!-- Plot -->
 
 <details>
@@ -57,7 +7,7 @@ This would tell you whether reporting the extreme option varied according to con
   
 <br>
   
-```{r, out.width = '100%', out.height = '100%'}
+```{r, out.width = '60%'}
 source('r-scripts/fo-recall/fo_recall_filter.R')
 source('r-scripts/fo-recall/fo_recall_plots.R')
 
@@ -68,7 +18,7 @@ include_graphics(
 
 Note: 
 
-- Proportions are taken within condition and context (high/low). E.g., All the green bars in the top left sum to 1, all the orange bars in the top middle sum to 1, and so on. 
+- Proportions are taken within condition and context (High/Low). E.g., All the green bars in the top left sum to 1, all the orange bars in the top middle sum to 1, and so on. 
 - The colour palette is colourblind friendly.
 
 <br>
@@ -106,8 +56,7 @@ kable(interp, 'html', digits = 3) %>%
 
 Note:
 
-- Report either the odds ratio or Cohen's $g$, not both.
-- Almost nobody has heard of Cohen's $g$ and wouldn't know how to interpret it. Furthermore, they would probably confuse it with Hedge's $g$ (which is a variant of Cohen's $d$).  Therefore, it's probably best to report the odds ratio.
+- Table shows Cohen's $g$ not Hedge's $g$ (which is a variant of Cohen's $d$).
 
 <br>
 
@@ -297,9 +246,6 @@ Note:
 - $\varphi_c$ is Cramér’s V, a measure of association for two nominal variables (i.e., an effect size of sorts). It can take a value between 0 and 1, with 0 indicating no association (i.e., full independence). 
 
 - Post-hoc analysis on each $\chi^2$ test was conducted by evaluating the standardized residuals from the chi-square analysis because it seemed the most intuitive approach. However, pairwise Pearson Chi-squared or Fisher Exact tests across the three conditions were also run. The `p_value_adj` column shows corrected p-values using the Holm-Bonferroni method.
-
-
-
 
 <br>
 
