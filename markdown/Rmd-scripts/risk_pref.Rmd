@@ -77,7 +77,26 @@ kable(s, 'html', digits = 3) %>%
 source('r-scripts/choice-trials/pr_risky_diff_aov.R')
 ```
 
-<h4> Main Effect </h4>
+<h4> Main Effect (L-Ratio)</h4>
+```{r}
+kable(anova_lrat, 'html', digits = 3) %>%
+  kable_classic(full_width = T, position = "center", html_font = "Arial")
+```
+
+```{r}
+l_rat <- round(anova_lrat$L.Ratio[2], 2)
+df <- anova_lrat$df[2] - anova_lrat$df[1]
+p_val <- round(anova_lrat$`p-value`[2], 3)
+bf <- round(anova_lrat$BF_10[2], 2)
+```
+
+**Effect of Condition:**
+
+$\chi^2(`r df`) = `r l_rat`, p = `r p_val`, BF_{01} = `r bf`$
+
+<br>
+
+<h4> Main Effect (F-Ratio)</h4>
 
 ```{r}
 kable(anova_diff, 'html', digits = 3) %>%

@@ -15,24 +15,11 @@ NE_v_E1 <- c(1, 0, 0)
 E2_v_E1 <- c(0, 0, 1)
 contrasts(diffs_b7$condition) <- cbind(NE_v_E1, E2_v_E1)
 
-# Models
-null_mod <- gls(diff ~ 1, data = diffs_b7, method = "ML")
-summary(null_mod)
-
+# Model
 diff_mod <- gls(diff ~ condition, data = diffs_b7, method = "ML")
 summary(diff_mod)
 
-# L-ratio anova table-----------------------------------------------------------
-anova_lrat <- as.data.frame(anova(null_mod, diff_mod))[, -c(1)]
-
-# Inverse Bayes factor
-delta_BIC <- anova_lrat$BIC[2] - anova_lrat$BIC[1]
-BF01 <- exp(delta_BIC / 2)
-BF10 <- 1 / BF01
-anova_lrat$BF_10 <- c(NA, BF10)
-
-
-# F-Ratio table-----------------------------------------------------------------
+# Main Effect
 df_resid <- summary(diff_mod)$dims$N - summary(diff_mod)$dims$p
 anova_diff <- anova(diff_mod)
 anova_diff <- add_row(anova_diff,
@@ -49,7 +36,7 @@ anova_diff$pseudo_R2 <- c(
   NA
 )
 
-# Planned Contrasts Results-----------------------------------------------------
+# Planned Contrasts Results
 pc_diff <- as.data.frame(summary(diff_mod)$tTable)
 
 # Adjust p-value for one-sided test as per pre-registration
