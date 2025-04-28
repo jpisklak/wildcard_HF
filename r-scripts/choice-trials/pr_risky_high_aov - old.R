@@ -16,20 +16,10 @@ NE_v_E1 <- c(1, 0, 0)
 E2_v_E1 <- c(0, 0, 1)
 contrasts(hv$condition) <- cbind(NE_v_E1, E2_v_E1)
 
-# Models
-hv_null_mod <- gls(cp ~ 1, data = hv, method = "ML")
+# Model
 hv_mod <- gls(cp ~ condition, data = hv, method = "ML")
 
-# L-Ratio Table-----------------------------------------------------------------
-anova_hv_lrat <- as.data.frame(anova(hv_null_mod, hv_mod))[, -c(1)]
-
-# Inverse Bayes factor
-delta_BIC <- anova_hv_lrat$BIC[2] - anova_hv_lrat$BIC[1]
-BF01 <- exp(delta_BIC / 2)
-BF10 <- 1 / BF01
-anova_hv_lrat$BF_10 <- c(NA, BF10)
-
-# F-Ratio Table-----------------------------------------------------------------
+# Main Effect
 df_resid <- summary(hv_mod)$dims$N - summary(hv_mod)$dims$p
 anova_hv <- anova(hv_mod)
 anova_hv <- add_row(anova_hv,

@@ -17,19 +17,9 @@ E2_v_E1 <- c(0, 0, 1)
 contrasts(lv$condition) <- cbind(NE_v_E1, E2_v_E1)
 
 # Model
-lv_null_mod <- gls(cp ~ 1, data = lv, method = "ML")
 lv_mod <- gls(cp ~ condition, data = lv, method = "ML")
 
-# L-Ratio Table-----------------------------------------------------------------
-anova_lv_lrat <- as.data.frame(anova(lv_null_mod, lv_mod))[, -c(1)]
-
-# Inverse Bayes factor
-delta_BIC <- anova_lv_lrat$BIC[2] - anova_lv_lrat$BIC[1]
-BF01 <- exp(delta_BIC / 2)
-BF10 <- 1 / BF01
-anova_lv_lrat$BF_10 <- c(NA, BF10)
-
-# F-Ratio Table-----------------------------------------------------------------
+# Main Effect
 df_resid <- summary(lv_mod)$dims$N - summary(lv_mod)$dims$p
 anova_lv <- anova(lv_mod)
 anova_lv <- add_row(anova_lv,
