@@ -8,7 +8,10 @@
 #------------------------------------------------------------------------------
 dodge <- 0.25
 
-plt_risky_blk <- ggplot(risky_res, aes(
+risky_res_rename <- risky_res
+levels(risky_res_rename$condition) <- c("No Extreme", "Extreme First", "Extreme Last")
+
+plt_risky_blk <- ggplot(risky_res_rename, aes(
   x = block, y = cp,
   group = risky_choice,
   shape = risky_choice,
@@ -76,7 +79,11 @@ ggsave("plots/choice-trials/plt_risky_blk.svg",
 # Block 7 Difference Scores
 #------------------------------------------------------------------------------
 
-plt_risky_diff <- ggplot(diffs_b7, aes(x = condition, y = diff)) +
+diffs_b7_rename <- diffs_b7
+levels(diffs_b7_rename$condition) <- 
+  c("No Extreme", "Extreme First", "Extreme Last")
+
+plt_risky_diff <- ggplot(diffs_b7_rename, aes(x = condition, y = diff)) +
   geom_bar(stat = "summary", fun = mean,
            aes(fill = condition),
            colour = "black",
@@ -94,7 +101,7 @@ plt_risky_diff <- ggplot(diffs_b7, aes(x = condition, y = diff)) +
   ) +
   scale_fill_manual(values = brewer.pal(n = 8, name = "Dark2")) +
   xlab("Condition") +
-  ylab("p(Risky: High - Low)") +
+  ylab("Extreme-Outcome Score") +
   theme_custom() +
   theme(
     axis.text.x = element_text(size = 22),

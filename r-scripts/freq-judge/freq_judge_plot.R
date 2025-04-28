@@ -10,7 +10,10 @@
 # Note data is qualitative and thus probably shouldn't be plotted this way.
 dodge <- position_dodge(.9)
 
-plt_fj_means <- ggplot(fj_long, aes(
+fj_long_rename <- fj_long
+levels(fj_long_rename$condition) <- c("No Extreme", "Extreme First", "Extreme Last")
+
+plt_fj_means <- ggplot(fj_long_rename, aes(
   x = FJ_outcome, y = FJ_resp,
   fill = condition, group = condition
 )) +
