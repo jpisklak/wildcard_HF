@@ -79,6 +79,24 @@ ggsave("plots/choice-trials/plt_risky_blk.svg",
 # Block 7 Difference Scores
 #------------------------------------------------------------------------------
 
+# Sum stats for difference scores
+diffs_b7 |> 
+  group_by(condition) |> 
+  summarise(
+    n = length(diff),
+    m = mean(diff),
+    df = n - 1,
+    alpha = 0.05,
+    t_crit = abs(qt(alpha / 2, df = df)),
+    se = sd(diff) / sqrt(n),
+    moe = se * t_crit,
+    ci_bot = m - moe,
+    ci_top = m + moe,
+    mu = 0,
+    d = (m - mu) / sd(diff)
+  )
+
+
 diffs_b7_rename <- diffs_b7
 levels(diffs_b7_rename$condition) <- 
   c("No Extreme", "Extreme First", "Extreme Last")
@@ -100,7 +118,7 @@ plt_risky_diff <- ggplot(diffs_b7_rename, aes(x = condition, y = diff)) +
     linewidth = 1
   ) +
   scale_fill_manual(values = brewer.pal(n = 8, name = "Dark2")) +
-  xlab("Condition") +
+  xlab("Group") +
   ylab("Extreme-Outcome Score") +
   theme_custom() +
   theme(

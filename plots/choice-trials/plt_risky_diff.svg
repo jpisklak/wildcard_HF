@@ -60,7 +60,7 @@
 <text x='203.70' y='452.02' text-anchor='middle' style='font-size: 22.00px; font-family: "Arial";' textLength='116.17px' lengthAdjust='spacingAndGlyphs'>No Extreme</text>
 <text x='372.48' y='452.02' text-anchor='middle' style='font-size: 22.00px; font-family: "Arial";' textLength='130.82px' lengthAdjust='spacingAndGlyphs'>Extreme First</text>
 <text x='541.25' y='452.02' text-anchor='middle' style='font-size: 22.00px; font-family: "Arial";' textLength='129.64px' lengthAdjust='spacingAndGlyphs'>Extreme Last</text>
-<text x='372.48' y='494.73' text-anchor='middle' style='font-size: 36.00px; font-family: "Arial";' textLength='152.11px' lengthAdjust='spacingAndGlyphs'>Condition</text>
+<text x='372.48' y='494.73' text-anchor='middle' style='font-size: 36.00px; font-family: "Arial";' textLength='100.06px' lengthAdjust='spacingAndGlyphs'>Group</text>
 <text transform='translate(35.05,218.41) rotate(-90)' text-anchor='middle' style='font-size: 36.00px; font-family: "Arial";' textLength='396.13px' lengthAdjust='spacingAndGlyphs'>Extreme-Outcome Score</text>
 </g>
 </svg>
