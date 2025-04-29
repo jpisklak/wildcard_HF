@@ -11,20 +11,32 @@ props_rename <- props
 levels(props_rename$condition) <- 
   c("No Extreme", "Extreme First", "Extreme Last")
 
+# New Colour levels
+brewer.pal(n = 8, name = "Dark2")
+
+props_rename$colour_col <- paste(props_rename$condition, props_rename$FO_cat,
+                                 sep = "_")
+props_rename$colour_col <- factor(props_rename$colour_col)
+levels(props_rename$colour_col)
+
+col_palette <- c("#D95F02", "white", "white", "#D95F02", "grey",
+                 "#7570B3", "white", "white", "#7570B3", "grey",
+                 "#1B9E77", "white", "white", "#1B9E77", "grey")
 
 # Plot
-plt_fo_prop <- ggplot(props_rename, aes(x = FO_cat, y = prop, group = condition)) +
+plt_fo_prop <- ggplot(props_rename, 
+                      aes(x = FO_cat, y = prop, group = condition)) +
   #geom_hline(yintercept = 0.5, linetype = 3) +
   geom_bar(
     stat = "identity",
-    aes(fill = condition),
+    aes(fill = colour_col),
     colour = "black",
     linewidth = 1,
     position = "dodge"
   ) +
   #facet_wrap(FO_context ~ condition, scales = 'free_x') +
   facet_grid2(FO_context ~ condition, scales = 'free_x', independent = 'x') +
-  scale_fill_manual(values = brewer.pal(n = 8, name = "Dark2")) +
+  scale_fill_manual(values = col_palette) +
   xlab("Outcome") +
   ylab("p(Reported)") +
   labs(fill = "Condition") +

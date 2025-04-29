@@ -7,15 +7,27 @@
 
 # Plot (Means and 95% CI)
 #-------------------------------------------------------------------------------
-# Note data is qualitative and thus probably shouldn't be plotted this way.
 dodge <- position_dodge(.9)
 
 fj_long_rename <- fj_long
 levels(fj_long_rename$condition) <- c("No Extreme", "Extreme First", "Extreme Last")
 
+# New Colour levels
+brewer.pal(n = 8, name = "Dark2")
+
+fj_long_rename$colour_col <- paste(fj_long_rename$condition, fj_long_rename$FJ_outcome,
+                                 sep = "_")
+fj_long_rename$colour_col <- factor(fj_long_rename$colour_col)
+levels(fj_long_rename$colour_col)
+
+col_palette <- c("#D95F02", "white", "white", "#D95F02",
+                 "#7570B3", "white", "white", "#7570B3",
+                 "#1B9E77", "white", "white", "#1B9E77")
+
+# Plot
 plt_fj_means <- ggplot(fj_long_rename, aes(
   x = FJ_outcome, y = FJ_resp,
-  fill = condition, group = condition
+  fill = colour_col, group = condition
 )) +
   #geom_hline(yintercept = 50, linetype = 3) +
   geom_bar(
@@ -33,7 +45,7 @@ plt_fj_means <- ggplot(fj_long_rename, aes(
     linewidth = 1,
     position = dodge
   ) +
-  scale_fill_manual(values = brewer.pal(n = 8, name = "Dark2")) +
+  scale_fill_manual(values = col_palette) +
   #facet_wrap(~FJ_context, scales = "free_x") +
   facet_grid2(FJ_context ~ condition, scales = 'free_x', independent = 'x') +
   coord_cartesian(ylim = c(0, 100)) +
