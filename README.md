@@ -2,15 +2,25 @@
 
 ## Overview
 
-This repository contains all the data and R code used for the analyses in the *wildcard_HF study* and generates an HTML document of the results.
+This repository contains the data and R code associated with Experiment 2 of the study *Effects of Initial Experiences on Risky Choice* by Elliot A. Ludvig, Neil McMillan, Jeffrey M. Pisklak, Nick Simonsen, Alice Mason, Jason Long, Marcia L. Spetch, and Christopher R. Madan.
 
-To view the results document, download `wildcard-results--xxxx-xx-xx.html` and open it in your web browser.
+**GitHub Repository:**
+
+- [https://github.com/jpisklak/wildcard_HF](https://github.com/jpisklak/wildcard_HF)
+
+**Associated OSF Project:**
+
+- [https://osf.io/pnrwy/](https://osf.io/pnrwy/)
+
+The most accessible form of the data to download is `wc_full_data.csv` located within the `./data` directory.
+
+To view the results document, download `wildcard-results--yyyy-mm-dd.html` and open it in a web browser.
 
 ## Contents
 
 The directory, file, and variable names within this repository are designed to be self-explanatory.
 
-- `generate_markdown.R`: An R script used to run all the files necessary to produce the HTML results document.
+- `generate_markdown.R`: An R script used to run all the files necessary to produce the HTML results document `wildcard-results--yyyy-mm-dd.html`.
 
 - `/data`: Contains all the raw Pavlovia and Prolific files.
 
