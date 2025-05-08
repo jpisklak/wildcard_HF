@@ -18,8 +18,7 @@ include_graphics(
 
 Note: 
 
-- Proportions are taken within condition and context (High/Low). E.g., All the green bars in the top left sum to 1, all the orange bars in the top middle sum to 1, and so on. 
-- The colour palette is colourblind friendly.
+- Proportions are taken within group and context (High/Low). E.g., All three bars in the top left facet sum to 1, all three bars in the top middle facet sum to 1, and so on.
 
 <br>
 
@@ -56,7 +55,7 @@ kable(interp, 'html', digits = 3) %>%
 
 Note:
 
-- Table shows Cohen's $g$ not Hedge's $g$ (which is a variant of Cohen's $d$).
+- Table shows Cohen's $g$ (not to be confused with Hedge's $g$).
 
 <br>
 
@@ -133,16 +132,45 @@ $\chi^2(`r df[3]`) = `r chi[3]`, p = `r p[3]`$
 
 ## Alternative Analysis
 
+<!-- Goodness-of-fit tests -->
+
+<details>
+  <summary>
+    Goodness-of-fit tests - Extreme vs Non-Extreme Reporting
+  </summary>
+  
+```{r}
+source('r-scripts/fo-recall/chisq_fo_recall_analysis.R')
+
+chi <- round(c(gf_high_test$statistic, gf_low_test$statistic), 3)
+df <- round(c(gf_high_test$parameter, gf_low_test$parameter), 3)
+p <- round(c(gf_high_test$p.value, gf_low_test$p.value), 3)
+```
+
+<br>
+
+<h4> High Value Result </h4>
+
+$\chi^2(`r df[1]`) = `r chi[1]`, p < 0.001$
+
+<br>
+
+<h4> Low Value Result </h4>  
+
+$\chi^2(`r df[2]`) = `r chi[2]`, p < 0.001$
+
+<br>
+
+</details>  
+
 <!-- 2x3 Chi-Squared Tests -->
 
 <details>
   <summary>
-    2x3 Chi-Squared Tests
+    2 $\times$ 3 Chi-Squared Tests - Extreme vs Non-Extreme $\times$ Group
   </summary>
 
 ```{r}
-source('r-scripts/fo-recall/chisq_fo_recall_analysis.R')
-
 chi <- round(c(fo_high_test$statistic, fo_low_test$statistic), 2)
 df <- round(c(fo_high_test$parameter, fo_low_test$parameter), 2)
 p <- round(c(fo_high_test$p.value, fo_low_test$p.value), 3)
@@ -245,7 +273,7 @@ Note:
 
 - $\varphi_c$ is Cramér’s V, a measure of association for two nominal variables (i.e., an effect size of sorts). It can take a value between 0 and 1, with 0 indicating no association (i.e., full independence). 
 
-- Post-hoc analysis on each $\chi^2$ test was conducted by evaluating the standardized residuals from the chi-square analysis because it seemed the most intuitive approach. However, pairwise Pearson Chi-squared or Fisher Exact tests across the three conditions were also run. The `p_value_adj` column shows corrected p-values using the Holm-Bonferroni method.
+- A post-hoc analysis on each $\chi^2$ test was conducted by evaluating the standardized residuals from the chi-square analysis because it seemed the most  natural approach. However, pairwise Fisher Exact tests across the three conditions were also run and is what was reported in the manuscript. The `p_value_adj` column shows corrected p-values using the Holm-Bonferroni method.
 
 <br>
 

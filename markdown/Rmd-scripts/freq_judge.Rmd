@@ -22,22 +22,6 @@ include_graphics(
 
 <details>
   <summary>
-  Table - Plotting Values
-  </summary>
-  
-<br>
-
-```{r}
-kable(fj_bar_tab, 'html', digits = 3) %>%
-  kable_classic(full_width = T, position = "center", html_font = "Arial")
-```
-
-<br>
-
-</details>
-
-<details>
-  <summary>
   2x3 ANOVA using linear mixed-effects models fit by maximum likelihood
   </summary>
   
@@ -68,7 +52,7 @@ BF_vals <-
   )
 ```
 
-**Main Effect of Condition:**
+**Main Effect of Group:**
 
 $\chi^2(`r df_diffs[2]`) = `r l_rats[2]`$, $p = `r p_vals[2]`$, $BF_{10} = `r BF_vals[2]`$
 
