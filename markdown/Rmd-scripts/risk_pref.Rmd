@@ -21,7 +21,7 @@ include_graphics(
 
 <details>
   <summary>
-  Plot - Condition Differences with 95% CIs (Block 7)
+  Plot - Extreme-Outcome Scores with 95% CIs (Block 7)
   </summary>
   
 <br>
