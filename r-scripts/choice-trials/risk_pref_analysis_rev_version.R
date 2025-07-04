@@ -1,5 +1,5 @@
 # Run the following 4 lines to execute this script independently
-# setwd('../..') # assumes working dir is ./r-scripts/choice-trials
+ # setwd('../..') # assumes working dir is ./r-scripts/choice-trials
  source("r-scripts/prelim_code.R")
  source("r-scripts/subj_stats.R")
  source("r-scripts/choice-trials/risk_pref_filter.R")
@@ -53,7 +53,11 @@ risky_main
 # Planned Comparisons
 round(summary(cond_val)$tTable, 4)
 pc <- as.data.frame(summary(cond_val)$tTable)
+
+  # Adjust for one-sided test
+pc$`p-value`[c(2:3, 5:6)] <- pc$`p-value`[c(2:3, 5:6)] / 2
 pc$sig <- ifelse(pc$`p-value` < .05, TRUE, FALSE)
+
 pc$r_effect <- sqrt((pc$`t-value`^2) /
                       (pc$`t-value`^2 + pc$DF))
 
