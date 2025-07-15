@@ -11,10 +11,12 @@
 gf_high <- fo |> filter(FO_context == "High")
 gf_high_tab <- xtabs(~ FO_cat, data = gf_high)
 gf_high_test <- chisq.test(gf_high_tab, p = c(0.5, 0.5))
+gf_high_w <- cohenW(gf_high_tab, p = c(0.5, 0.5))
 
 gf_low <- fo |> filter(FO_context == "Low")
 gf_low_tab <- xtabs(~ FO_cat, data = gf_low)
 gf_low_test <- chisq.test(gf_low_tab, p = c(0.5, 0.5))
+gf_low_w <- cohenW(gf_low_tab, p = c(0.5, 0.5))
 
 
 # 2 X 3 Pearson’s Chi-squared Test
