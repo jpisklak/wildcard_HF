@@ -145,19 +145,20 @@ source('r-scripts/fo-recall/chisq_fo_recall_analysis.R')
 chi <- round(c(gf_high_test$statistic, gf_low_test$statistic), 3)
 df <- round(c(gf_high_test$parameter, gf_low_test$parameter), 3)
 p <- round(c(gf_high_test$p.value, gf_low_test$p.value), 3)
+w <- round(c(gf_high_w, gf_low_w), 2)
 ```
 
 <br>
 
 <h4> High Value Result </h4>
 
-$\chi^2(`r df[1]`) = `r chi[1]`, p < 0.001$
+$\chi^2(`r df[1]`) = `r chi[1]`, p < 0.001, w = `r w[1]`$
 
 <br>
 
 <h4> Low Value Result </h4>  
 
-$\chi^2(`r df[2]`) = `r chi[2]`, p < 0.001$
+$\chi^2(`r df[2]`) = `r chi[2]`, p < 0.001, w = `r w[2]`$
 
 <br>
 
@@ -270,6 +271,8 @@ Note:
 - Only recalled outcomes that matched the programmed values were included. i.e., if they saw the *High Value Risky Door*, 80 was logged as "Yes" and 60 was logged as "No." If they saw the *Low Value Risky Door*, 20 was logged as "Yes", 40 was logged as "No". Participants who responded with any "other" values were removed from the analysis. Only Risky doors were evaluated. 
 
 - In total, removing "other" responses resulted `r n_other` participants being excluded from these analyses leaving a final N = `r n_fo`.
+
+- $w$ is Cohen's w
 
 - $\varphi_c$ is Cramér’s V, a measure of association for two nominal variables (i.e., an effect size of sorts). It can take a value between 0 and 1, with 0 indicating no association (i.e., full independence). 
 
