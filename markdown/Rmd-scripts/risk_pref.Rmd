@@ -40,26 +40,14 @@ include_graphics(
 
 <details>
   <summary>
-  Summary Statistics (Block 7)
+  Summary Stats for Extreme-Outcome Scores
   </summary>
   
 <br>
 
 ```{r}
-s <- risky_res %>%
-  filter(block == 7) %>% 
-  group_by(condition, risky_choice) %>%
-  summarise(
-    n = length(cp),
-    mean = mean(cp),
-    sd = sd(cp),
-    median = median(cp),
-    IQR = IQR(cp)
-    )
-
-kable(s, 'html', digits = 3) %>%
-  kable_classic(full_width = T, position = "center", html_font = "Arial") %>%
-  column_spec(c(4, 6), bold = T)
+kable(diffs_summary, 'html', digits = 4) %>%
+  kable_classic(full_width = T, position = "center", html_font = "Arial")
 ```
 
 <br>

@@ -74,13 +74,11 @@ ggsave("plots/choice-trials/plt_risky_blk.svg",
   units = "in", width = 11, height = 7
 )
 
-
-
 # Block 7 Difference Scores
 #------------------------------------------------------------------------------
 
 # Sum stats for difference scores
-diffs_b7 |> 
+diffs_summary <- diffs_b7 |> 
   group_by(condition) |> 
   summarise(
     n = length(diff),
