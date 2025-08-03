@@ -29,22 +29,7 @@ BF01 <- exp(delta_BIC / 2)
 BF10 <- 1 / BF01
 anova_hv_lrat$BF_10 <- c(NA, BF10)
 
-# F-Ratio Table-----------------------------------------------------------------
 df_resid <- summary(hv_mod)$dims$N - summary(hv_mod)$dims$p
-anova_hv <- anova(hv_mod)
-anova_hv <- add_row(anova_hv,
-  numDF = df_resid,
-  `F-value` = NULL,
-  `p-value` = NULL
-)
-row.names(anova_hv)[3] <- "Residuals"
-
-# Nagelkerke (Cragg and Uhler) Pseudo R-squared
-anova_hv$pseudo_R2 <- c(
-  NA,
-  nagelkerke(hv_mod)$Pseudo.R.squared.for.model.vs.null[3],
-  NA
-)
 
 # Planned Contrasts Results
 pc_hv <- as.data.frame(summary(hv_mod)$tTable)

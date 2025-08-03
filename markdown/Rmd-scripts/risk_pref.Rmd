@@ -58,7 +58,7 @@ kable(diffs_summary, 'html', digits = 4) %>%
 
 <details>
   <summary>
-  One-Way ANOVA on Difference (High - Low)
+  One-Way ANOVA on the Extreme-Outcome Scores (i.e, Difference: High - Low)
   </summary>
   
 ```{r}
@@ -81,26 +81,6 @@ bf <- round(anova_lrat$BF_10[2], 2)
 **Effect of Condition:**
 
 $\chi^2(`r df`) = `r l_rat`$, $p = `r p_val`$, $BF_{01} = `r bf`$
-
-<br>
-
-<h4> Main Effect (F-Ratio)</h4>
-
-```{r}
-kable(anova_diff, 'html', digits = 3) %>%
-  kable_classic(full_width = T, position = "center", html_font = "Arial")
-```
-
-```{r}
-f_vals <- round(anova_diff$`F-value`, 2)
-p_vals <- ifelse(anova_diff$`p-value` < 0.001, 
-                 '< 0.001', round(anova_diff$`p-value`, 3))
-R2_vals <- round(anova_diff$pseudo_R2, 2)
-```
-
-**Effect of Condition:**
-
-$F(`r anova_diff[2, 1]`$, $`r anova_diff[3, 1]`) = `r f_vals[2]`$, $p = `r p_vals[2]`$, $R^2_N = `r R2_vals[2]`$
 
 <br>
 
@@ -177,26 +157,6 @@ bf <- round(anova_hv_lrat$BF_10[2], 3)
 **Effect of Condition:**
 
 $\chi^2(`r df`) = `r l_rat`$, $p = `r p_val`$, $BF_{01} = `r bf`$
-
-<br>
-
-<h4> Main Effect (F-Ratio)</h4>
-
-```{r}
-kable(anova_hv, 'html', digits = 3) %>%
-  kable_classic(full_width = T, position = "center", html_font = "Arial")
-```
-
-```{r}
-f_vals <- round(anova_hv$`F-value`, 2)
-p_vals <- ifelse(anova_hv$`p-value` < 0.001, 
-                 '< 0.001', round(anova_hv$`p-value`, 3))
-R2_vals <- round(anova_hv$pseudo_R2, 3)
-```
-
-**Effect of Condition:**
-
-$F(`r anova_hv[2, 1]`$, $`r anova_hv[3, 1]`) = `r f_vals[2]`$, $p = `r p_vals[2]`$, $R^2_N = `r R2_vals[2]`$
 
 <br>
 
@@ -277,26 +237,6 @@ $\chi^2(`r df`) = `r l_rat`$, $p = `r p_val`$, $BF_{01} = `r bf`$
 
 <br>
 
-<h4> Main Effect (F-Ratio)</h4>
-
-```{r}
-kable(anova_lv, 'html', digits = 3) %>%
-  kable_classic(full_width = T, position = "center", html_font = "Arial")
-```
-
-```{r}
-f_vals <- round(anova_lv$`F-value`, 2)
-p_vals <- ifelse(anova_lv$`p-value` < 0.001, 
-                 '< 0.001', round(anova_lv$`p-value`, 3))
-R2_vals <- round(anova_lv$pseudo_R2, 2)
-```
-
-**Effect of Condition:**
-
-$F(`r anova_lv[2, 1]`$, $`r anova_lv[3, 1]`) = `r f_vals[2]`$, $p = `r p_vals[2]`$, $R^2_N = `r R2_vals[2]`$
-
-<br>
-
 <h4> Planned Contrasts </h4>
 
 ```{r}
@@ -352,8 +292,6 @@ $t(`r df`) = `r t_stat`$, $p = `r p_val`$, $d = `r d_val`$
 -  NE = No Extreme; E1 = Extreme First; E2 = Extreme Last
 
 - ANOVAs were run using generalized least-squares fit by maximum likelihood.
-
-- $R^2_N$ is Nagelkerke's (also known as Cragg and Uhler's) pseudo $R^2$ [@Nagelkerke]. It isn't interpreted in exactly the same way as a $R^2$ based on ordinary least-squares regression, but it is bounded by 0 and 1 and higher values indicate a better model fit.
 
 </details>
 
