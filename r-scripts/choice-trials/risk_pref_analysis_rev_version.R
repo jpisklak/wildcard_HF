@@ -28,7 +28,7 @@ contrasts(risky_res_b7$risky_choice) <- cbind(` high_vs_low `)
 
 # Multilevel model
 base_mod <- lme(cp ~ 1,
-  random = ~ 1 | ID / risky_choice,
+  random = ~ 1 | ID,
   method = "ML", data = risky_res_b7
 )
 
