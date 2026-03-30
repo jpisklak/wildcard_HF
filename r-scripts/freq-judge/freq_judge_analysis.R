@@ -27,31 +27,34 @@ fj_long$ID <- factor(fj_long$ID)
 
 # Models
 base <- lme(FJ_resp ~ 1,
-  random = ~ 1 | ID / FJ_context,
+  random = ~ 1 | ID,
   method = "ML",
   data = fj_long
 )
 
 cond_mod <- lme(FJ_resp ~ condition,
-  random = ~ 1 | ID / FJ_context,
+  random = ~ 1 | ID,
   method = "ML",
   data = fj_long
 )
 
 HL_mod <- lme(FJ_resp ~ condition + FJ_context,
-  random = ~ 1 | ID / FJ_context,
+  random = ~ 1 | ID,
   method = "ML",
   data = fj_long
 )
 
 int_mod <- lme(FJ_resp ~ condition + FJ_context + condition:FJ_context,
-  random = ~ 1 | ID / FJ_context,
+  random = ~ 1 | ID,
   method = "ML",
   data = fj_long
 )
 
 # Residuals
 #plot(int_mod)
+#plot(int_mod, resid(.) ~ fitted(.) | ID)
+#qqnorm(resid(int_mod))
+#qqnorm(ranef(int_mod)[, 1])
 
 # Main effects and interactions
 aov_2x3 <- data.frame(anova(base, cond_mod, HL_mod, int_mod))
